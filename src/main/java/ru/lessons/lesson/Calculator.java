@@ -1,8 +1,5 @@
 package ru.lessons.lesson;
 
-/**
- * Created by VitAl on 13.03.2018.
- */
 public class Calculator {
 
     private double result = 0;
@@ -22,15 +19,17 @@ public class Calculator {
      * @param params - arguments for multiply
      */
     public void mul(double... params){
+        double resultMul = 1;
         for (double param: params){
-            result *= param;
+            resultMul *= param;
         }
+        result = resultMul;
     }
 
     /**
      * divite numbers
-     * @param param1
-     * @param param2
+     * @param param1 param for divide
+     * @param param2 param for divide
      */
     public void div(double param1, double param2){
         result = param1 / param2;
@@ -38,8 +37,8 @@ public class Calculator {
 
     /**
      * subtract numbers
-     * @param param1
-     * @param param2
+     * @param param1 param for subtract
+     * @param param2 param for subtract
      */
     public void sub(double param1, double param2){
         result = param1 - param2;
