@@ -19,6 +19,12 @@ public class CalculatorTest {
         calc.div(5, 2);
         Assert.assertEquals(2.5, calc.getResult(), 0.1);
     }
+    @Test(expected = IllegalArgumentException.class)
+    public void divException() throws Exception {
+        Calculator calc = new Calculator();
+        calc.div(1);
+        calc.div(5, 0);
+    }
 
     @Test
     public void sub() throws Exception {

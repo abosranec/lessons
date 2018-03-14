@@ -28,11 +28,14 @@ public class Calculator {
 
     /**
      * divite numbers
-     * @param param1 param for divide
-     * @param param2 param for divide
+     * @param param param for divide
      */
-    public void div(double param1, double param2){
-        result = param1 / param2;
+    public void div(double... param) throws Exception{
+        if (param.length < 2 || param[1] == 0){
+            throw new IllegalArgumentException("Error, wrong arguments, try again !");
+        } else {
+            result = param[0] / param[1];
+        }
     }
 
     /**

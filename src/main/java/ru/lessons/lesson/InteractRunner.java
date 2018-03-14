@@ -16,8 +16,12 @@ public class InteractRunner {
                 String first = scanner.next();
                 System.out.println("Enter second arg: ");
                 String second = scanner.next();
-                calculator.add(Double.valueOf(first), Double.valueOf(second));
-                System.out.println("Result : " + calculator.getResult());
+                try {
+                    calculator.div(Double.valueOf(first), Double.valueOf(second));
+                    System.out.println("Result : " + calculator.getResult());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                 calculator.cleanResult();
                 System.out.println("Exit: yes/no ?");
                 exit = scanner.next();
