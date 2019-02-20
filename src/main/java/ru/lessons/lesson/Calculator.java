@@ -14,6 +14,7 @@ public class Calculator {
         }
     }
 
+
     /**
      * multiply numbers
      * @param params - arguments for multiply
