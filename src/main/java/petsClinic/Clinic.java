@@ -90,47 +90,47 @@ public class Clinic{
         return string;
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Clinic clinic = new Clinic(
-                new Client("Jon", new Cat("barsik")),
-                new Client("Billy", new Dog("doggy"), new Hamster("ham")),
-                new Client("Jack", new Dog("pyshok"))
-        );
-        String exit = "no";
-
-        try {
-            while (!exit.equals("yes")) {
-                System.out.println(clinic);
-                System.out.println("Enter client: ");
-                String client = scanner.next();
-                System.out.println("Enter old name: ");
-                String oldName = scanner.next();
-                System.out.println("Enter new name: ");
-                String newName = scanner.next();
-                try {
-                    clinic.editClientPetName(client, oldName, newName);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-
-                System.out.println(clinic);
-                System.out.println("Enter old client: ");
-                oldName = scanner.next();
-                System.out.println("Enter new client: ");
-                newName = scanner.next();
-                try {
-                    clinic.editClientName(oldName, newName);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-
-                System.out.println("Exit: yes/no ?");
-                exit = scanner.next();
-            }
-        }
-        finally {
-            scanner.close();
-        }
-    }
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//        Clinic clinic = new Clinic(
+//                new Client("Jon", new Cat("barsik")),
+//                new Client("Billy", new Dog("doggy"), new Hamster("ham")),
+//                new Client("Jack", new Dog("pyshok"))
+//        );
+//        String exit = "no";
+//
+//        try {
+//            while (!exit.equals("yes")) {
+//                System.out.println(clinic);
+//                System.out.println("Enter client: ");
+//                String client = scanner.next();
+//                System.out.println("Enter old name: ");
+//                String oldName = scanner.next();
+//                System.out.println("Enter new name: ");
+//                String newName = scanner.next();
+//                try {
+//                    clinic.editClientPetName(client, oldName, newName);
+//                } catch (Exception e) {
+//                    System.out.println(e.getMessage());
+//                }
+//
+//                System.out.println(clinic);
+//                System.out.println("Enter old client: ");
+//                oldName = scanner.next();
+//                System.out.println("Enter new client: ");
+//                newName = scanner.next();
+//                try {
+//                    clinic.editClientName(oldName, newName);
+//                } catch (Exception e) {
+//                    System.out.println(e.getMessage());
+//                }
+//
+//                System.out.println("Exit: yes/no ?");
+//                exit = scanner.next();
+//            }
+//        }
+//        finally {
+//            scanner.close();
+//        }
+//    }
 }
