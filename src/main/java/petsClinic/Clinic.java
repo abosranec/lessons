@@ -90,7 +90,7 @@ public class Clinic{
         return string;
     }
 
-//    public static void main(String[] args) {
+    public static void main(String[] args) {
 //        Scanner scanner = new Scanner(System.in);
 //        Clinic clinic = new Clinic(
 //                new Client("Jon", new Cat("barsik")),
@@ -132,5 +132,5 @@ public class Clinic{
 //        finally {
 //            scanner.close();
 //        }
-//    }
+    }
 }

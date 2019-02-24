@@ -30,4 +30,9 @@ public abstract class Pet {
     public String toString() {
         return name + "(" + type + ")";
     }
+
+//    @Override
+//    public boolean equals(Object obj) {
+//        return (name.equals(((Pet)obj).getName()) && type.equals(((Pet)obj).getType()));
+//    }
 }
