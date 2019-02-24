@@ -2,10 +2,7 @@ package petsClinic;
 
 import petsClinic.pets.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Clinic{
     private ArrayList<Client> clients = new ArrayList<Client>();
@@ -33,7 +30,7 @@ public class Clinic{
         this.clients.addAll(Arrays.asList(clients));
     }
 
-    public void removeClient(String name){
+    public void removeClient(String name) throws Exception {
         this.clients.remove(searchClient(name));
     }
 
@@ -41,19 +38,19 @@ public class Clinic{
         this.clients.clear();
     }
 
-    public void addPet(String clientName, Pet... pets){
+    public void addPet(String clientName, Pet... pets) throws Exception {
         searchClient(clientName).addPets(pets);
     }
 
-    public void removePet(String clientName, String pet){
+    public void removePet(String clientName, String pet) throws Exception{
         searchClient(clientName).removePet(pet);
     }
 
-    public void editClientName(String oldName, String newName){
+    public void editClientName(String oldName, String newName) throws Exception {
         searchClient(oldName).setName(newName);
     }
 
-    public void editClientPetName(String client, String oldName, String newName){
+    public void editClientPetName(String client, String oldName, String newName) throws Exception{
         searchClient(client).editPetName(oldName, newName);
     }
 
@@ -67,17 +64,17 @@ public class Clinic{
         return list;
     }
 
-    public List<String> seachClientPets(String client){
+    public List<String> seachClientPets(String client) throws Exception {
         return searchClient(client).getPets();
     }
 
-    private Client searchClient(String name){
+    private Client searchClient(String name) throws Exception {
         for (Client client: clients) {
             if(name.equals(client.getName())){
                 return client;
             }
         }
-        return null;
+        throw new Exception("Operation failed, client name \"" + name + "\" doesn't exist!");
     }
 
     @Override
@@ -94,11 +91,46 @@ public class Clinic{
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         Clinic clinic = new Clinic(
                 new Client("Jon", new Cat("barsik")),
                 new Client("Billy", new Dog("doggy"), new Hamster("ham")),
                 new Client("Jack", new Dog("pyshok"))
         );
-        System.out.println(clinic);
+        String exit = "no";
+
+        try {
+            while (!exit.equals("yes")) {
+                System.out.println(clinic);
+                System.out.println("Enter client: ");
+                String client = scanner.next();
+                System.out.println("Enter old name: ");
+                String oldName = scanner.next();
+                System.out.println("Enter new name: ");
+                String newName = scanner.next();
+                try {
+                    clinic.editClientPetName(client, oldName, newName);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+
+                System.out.println(clinic);
+                System.out.println("Enter old client: ");
+                oldName = scanner.next();
+                System.out.println("Enter new client: ");
+                newName = scanner.next();
+                try {
+                    clinic.editClientName(oldName, newName);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+
+                System.out.println("Exit: yes/no ?");
+                exit = scanner.next();
+            }
+        }
+        finally {
+            scanner.close();
+        }
     }
 }

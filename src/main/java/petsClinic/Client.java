@@ -44,7 +44,7 @@ public class Client {
         this.pets.addAll(Arrays.asList(pets));
     }
 
-    public void removePet(String name){
+    public void removePet(String name) throws Exception {
         this.pets.remove(searchPets(name));
     }
 
@@ -52,25 +52,25 @@ public class Client {
         this.pets.clear();
     }
 
-    public void editPetName(String oldName, String newName){
+    public void editPetName(String oldName, String newName) throws Exception {
         searchPets(oldName).setName(newName);
     }
 
-    public boolean isPetName(String pet){
-        if (searchPets(pet).equals(null)){
-            return false;
+    public boolean isPetName(String name){
+        for (Pet pet: pets) {
+            if(name.equals(pet.getName())){
+                return true;
+            }
         }
-        else {
-            return true;
-        }
+        return false;
     }
 
-    private Pet searchPets(String name){
+    private Pet searchPets(String name) throws Exception {
         for (Pet pet: pets) {
             if(name.equals(pet.getName())){
                 return pet;
             }
         }
-        return null;
+        throw new Exception("Operation failed, pet name \"" + name + "\" doesn't exist!");
     }
 }

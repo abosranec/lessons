@@ -14,10 +14,6 @@ public abstract class Pet {
         this.type = type;
     }
 
-    public void editName(String newName){
-        this.name = newName;
-    }
-
     public String getName() {
         return name;
     }
@@ -28,10 +24,6 @@ public abstract class Pet {
 
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     @Override
