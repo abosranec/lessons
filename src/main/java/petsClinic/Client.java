@@ -15,8 +15,8 @@ public class Client {
         this.name = name;
     }
 
-    public Client(String name, Pet... pets) {
-        this.name = name;
+    public Client(String name, Pet... pets) throws Exception {
+        this(name);
         addPets(pets);
     }
 
@@ -25,7 +25,7 @@ public class Client {
     }
 
     public List<String> getPets() {
-        List<String> list = new LinkedList<String>();
+        List<String> list = new ArrayList<String>();
         for (Pet pet: pets) {
             list.add(pet.toString());
         }
@@ -40,8 +40,14 @@ public class Client {
         this.name = name;
     }
 
-    public void addPets(Pet... pets){
-        this.pets.addAll(Arrays.asList(pets));
+    public void addPets(Pet... newPets) throws Exception {
+        for (Pet pet: newPets){
+            if (this.pets.contains(pet)) {
+                throw new Exception("Adding failed! Pet \"" + pet.getName() +
+                        "\" for client \"" + getName() + "\" already exist!");
+            }
+            this.pets.add(pet);
+        }
     }
 
     public void removePet(String name) throws Exception {
@@ -53,6 +59,10 @@ public class Client {
     }
 
     public void editPetName(String oldName, String newName) throws Exception {
+        if (isPetName(newName)) {
+            throw new Exception("Renaming failed! Pet \"" + newName +
+                    "\" for client \"" + getName() + "\" already exist !");
+        }
         searchPets(oldName).setName(newName);
     }
 
@@ -76,12 +86,15 @@ public class Client {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         return (name.equals(((Client)obj).getName()));
     }
 

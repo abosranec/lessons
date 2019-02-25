@@ -12,8 +12,7 @@ public abstract class Pet {
     }
 
     public Pet(Pet pet, String type) {
-        this.name = pet.getName();
-        this.type = type;
+        this(pet.getName(), type);
     }
 
     public String getName() {
@@ -30,17 +29,20 @@ public abstract class Pet {
 
     @Override
     public String toString() {
-        return name + "(" + type + ") + " + this.hashCode();
+        return name + "(" + type + ")";
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         return (name.equals(((Pet)obj).getName()) && type.equals(((Pet)obj).getType()));
     }
 

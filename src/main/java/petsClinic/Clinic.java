@@ -10,7 +10,8 @@ public class Clinic{
     public Clinic() {
     }
 
-    public Clinic(Client... clients) {
+    public Clinic(Client... clients) throws Exception {
+        this();
         addClients(clients);
     }
 
@@ -26,8 +27,13 @@ public class Clinic{
         return size;
     }
 
-    public void addClients(Client... clients) {
-        this.clients.addAll(Arrays.asList(clients));
+    public void addClients(Client... newClients) throws Exception {
+        for (Client client: newClients){
+            if (this.clients.contains(client)) {
+                throw new Exception("Adding failed! Client \"" + client.getName() + "\" already exist!");
+            }
+            this.clients.add(client);
+        }
     }
 
     public void removeClient(String name) throws Exception {
@@ -47,6 +53,9 @@ public class Clinic{
     }
 
     public void editClientName(String oldName, String newName) throws Exception {
+        if (isClientName(newName)) {
+            throw new Exception("Renaming failed! Client \"" + newName + "\" already exist !");
+        }
         searchClient(oldName).setName(newName);
     }
 
@@ -55,7 +64,7 @@ public class Clinic{
     }
 
     public List<String> seachClientsName(String pet){
-        List<String> list = new LinkedList<String>();
+        List<String> list = new ArrayList<String>();
         for (Client client: clients) {
             if(client.isPetName(pet)){
                 list.add(client.getName());
@@ -66,6 +75,15 @@ public class Clinic{
 
     public List<String> seachClientPets(String client) throws Exception {
         return searchClient(client).getPets();
+    }
+
+    public boolean isClientName(String name){
+        for (Client client: clients) {
+            if(name.equals(client.getName())){
+                return true;
+            }
+        }
+        return false;
     }
 
     private Client searchClient(String name) throws Exception {
@@ -90,47 +108,4 @@ public class Clinic{
         return string;
     }
 
-    public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-//        Clinic clinic = new Clinic(
-//                new Client("Jon", new Cat("barsik")),
-//                new Client("Billy", new Dog("doggy"), new Hamster("ham")),
-//                new Client("Jack", new Dog("pyshok"))
-//        );
-//        String exit = "no";
-//
-//        try {
-//            while (!exit.equals("yes")) {
-//                System.out.println(clinic);
-//                System.out.println("Enter client: ");
-//                String client = scanner.next();
-//                System.out.println("Enter old name: ");
-//                String oldName = scanner.next();
-//                System.out.println("Enter new name: ");
-//                String newName = scanner.next();
-//                try {
-//                    clinic.editClientPetName(client, oldName, newName);
-//                } catch (Exception e) {
-//                    System.out.println(e.getMessage());
-//                }
-//
-//                System.out.println(clinic);
-//                System.out.println("Enter old client: ");
-//                oldName = scanner.next();
-//                System.out.println("Enter new client: ");
-//                newName = scanner.next();
-//                try {
-//                    clinic.editClientName(oldName, newName);
-//                } catch (Exception e) {
-//                    System.out.println(e.getMessage());
-//                }
-//
-//                System.out.println("Exit: yes/no ?");
-//                exit = scanner.next();
-//            }
-//        }
-//        finally {
-//            scanner.close();
-//        }
-    }
 }
