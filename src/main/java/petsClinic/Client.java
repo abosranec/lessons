@@ -73,4 +73,15 @@ public class Client {
         }
         throw new Exception("Operation failed, pet name \"" + name + "\" doesn't exist!");
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (name.equals(((Client)obj).getName()));
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        return 31 * result + Arrays.hashCode(name.toCharArray());
+    }
 }

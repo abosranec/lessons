@@ -1,5 +1,7 @@
 package petsClinic.pets;
 
+import java.util.Arrays;
+
 public abstract class Pet {
     private String name;
     private String type;
@@ -28,11 +30,18 @@ public abstract class Pet {
 
     @Override
     public String toString() {
-        return name + "(" + type + ")";
+        return name + "(" + type + ") + " + this.hashCode();
     }
 
-//    @Override
-//    public boolean equals(Object obj) {
-//        return (name.equals(((Pet)obj).getName()) && type.equals(((Pet)obj).getType()));
-//    }
+    @Override
+    public boolean equals(Object obj) {
+        return (name.equals(((Pet)obj).getName()) && type.equals(((Pet)obj).getType()));
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Arrays.hashCode(type.toCharArray());
+        return 31 * result + Arrays.hashCode(name.toCharArray());
+    }
 }

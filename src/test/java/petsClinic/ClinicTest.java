@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class ClinicTest {
     Clinic clinic = new Clinic(
             new Client("Jon", new Cat("barsik")),
-            new Client("Billy", new Dog("doggy"), new Hamster("ham")),
+            new Client("Billy", new Dog("doggy"), new Hamster("ham"), new Dog("doggy")),
             new Client("Jack", new Dog("pyshok"))
     );
 
