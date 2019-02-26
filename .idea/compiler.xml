@@ -6,11 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="lessons" />
+        <module name="cpw" />
+        <module name="se" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="cpw" target="1.5" />
       <module name="lessons" target="1.5" />
+      <module name="se" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
