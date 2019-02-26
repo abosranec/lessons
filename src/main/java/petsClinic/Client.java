@@ -41,13 +41,15 @@ public class Client {
     }
 
     public void addPets(Pet... newPets) throws Exception {
+        ArrayList<Pet> list = new ArrayList<Pet>(this.pets);
         for (Pet pet: newPets){
-            if (this.pets.contains(pet)) {
+            if (list.contains(pet)) {
                 throw new Exception("Adding failed! Pet \"" + pet.getName() +
                         "\" for client \"" + getName() + "\" already exist!");
             }
-            this.pets.add(pet);
+            list.add(pet);
         }
+        this.pets.addAll(Arrays.asList(newPets));
     }
 
     public void removePet(String name) throws Exception {

@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class ClinicTest {
 
-    Clinic clinic = new Clinic();
+    private Clinic clinic = new Clinic();
 
     public ClinicTest() {
         System.out.println("ClinicTest()");

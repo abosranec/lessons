@@ -28,12 +28,14 @@ public class Clinic{
     }
 
     public void addClients(Client... newClients) throws Exception {
+        ArrayList<Client> list = new ArrayList<Client>(this.clients);
         for (Client client: newClients){
-            if (this.clients.contains(client)) {
+            if (list.contains(client)) {
                 throw new Exception("Adding failed! Client \"" + client.getName() + "\" already exist!");
             }
-            this.clients.add(client);
+            list.add(client);
         }
+        this.clients.addAll(Arrays.asList(newClients));
     }
 
     public void removeClient(String name) throws Exception {
