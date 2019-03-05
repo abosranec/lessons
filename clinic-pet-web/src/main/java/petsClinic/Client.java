@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Client {
+    private int id;
     private String name;
     private ArrayList<Pet> pets = new ArrayList<Pet>();
 

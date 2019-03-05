@@ -3,20 +3,31 @@
 <html>
 <head>
     <title>ClientView</title>
+    <style><%@include file="/css/styles.css"%></style>
 </head>
 <body>
-    <div>
-        <div style="display: inline-block; border: 1px solid black; margin:0px; padding:5px; ">
-            id
-        </div>
-        <div style="display: inline-block; border: 1px solid black; margin:0px; padding:5px; ">
-            name
-        </div>
-        <div style="display: inline-block; border: 1px solid black; margin:0px; padding:5px; ">
-            actions
-        </div>
-
+    <a href="${pageContext.servletContext.contextPath}/views/ClientCreate.jsp">Add client</a>
+    <div class="block0">
+        <table class="block1">
+            <tr>
+                <td class="block1">id</td>
+                <td class="block1">name</td>
+                <td class="block1">edit</td>
+                <td class="block1">delete</td>
+            </tr>
+            <c:forEach items="${clients}" var="client" varStatus="status">
+                <tr>
+                    <td class="block1">id</td>
+                    <td class="block1">${client.name}</td>
+                    <td class="block1">edit</td>
+                    <td class="block1">
+                        <a href="${pageContext.servletContext.contextPath}/client/delete?clientName=${client.name}">Удалить</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
+
 
 </body>
 </html>

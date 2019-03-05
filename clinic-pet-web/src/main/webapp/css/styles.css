@@ -1,0 +1,11 @@
+.block0 {
+	border: 1px solid black;
+	padding: 5px;
+	margin: 0px;
+}
+.block1 {
+	border-collapse: collapse;
+	border: 1px solid black;
+	padding: 5px;
+	margin: 0px;
+}

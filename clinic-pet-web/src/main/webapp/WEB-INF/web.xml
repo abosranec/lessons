@@ -10,14 +10,31 @@
         based on the recommendations of the Application Developer's Guide.
     </description>
    
-      <servlet>
-          <servlet-name>ClientViewServlet</servlet-name>
-          <servlet-class>petsClinic.servlets.ClientViewServlet</servlet-class>
-       </servlet>
-
-      <servlet-mapping>
+    <servlet>
+        <servlet-name>ClientViewServlet</servlet-name>
+        <servlet-class>petsClinic.servlets.ClientViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
         <servlet-name>ClientViewServlet</servlet-name>
         <url-pattern>/</url-pattern>
-      </servlet-mapping>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClientCreateServlet</servlet-name>
+        <servlet-class>petsClinic.servlets.ClientCreateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientCreateServlet</servlet-name>
+        <url-pattern>/client/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClientDeleteServlet</servlet-name>
+        <servlet-class>petsClinic.servlets.ClientDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientDeleteServlet</servlet-name>
+        <url-pattern>/client/delete</url-pattern>
+    </servlet-mapping>
    
 </web-app>

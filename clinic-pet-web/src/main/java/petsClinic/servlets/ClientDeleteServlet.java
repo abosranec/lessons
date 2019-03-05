@@ -9,13 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ClientViewServlet extends HttpServlet {
+public class ClientDeleteServlet extends HttpServlet {
     private final Clinic clinic = Clinic.getINSTANCE();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("clients", clinic.getClients());
-        req.getRequestDispatcher("views/ClientView.jsp").forward(req, resp);
+        try {
+            clinic.removeClient(req.getParameter("clientName"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        resp.sendRedirect(String.format("%s%s", req.getContextPath(),"/"));
     }
 
     @Override

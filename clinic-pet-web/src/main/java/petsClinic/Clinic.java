@@ -5,6 +5,7 @@ import petsClinic.pets.*;
 import java.util.*;
 
 public class Clinic{
+    private static final Clinic INSTANCE = new Clinic();
     private ArrayList<Client> clients = new ArrayList<Client>();
 
     public Clinic() {
@@ -13,6 +14,14 @@ public class Clinic{
     public Clinic(Client... clients) throws Exception {
         this();
         addClients(clients);
+    }
+
+    public static Clinic getINSTANCE() {
+        return INSTANCE;
+    }
+
+    public ArrayList<Client> getClients() {
+        return clients;
     }
 
     public int getNumberOfClients(){
