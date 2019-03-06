@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Client {
-    private int id;
     private String name;
     private ArrayList<Pet> pets = new ArrayList<Pet>();
 
@@ -25,16 +24,17 @@ public class Client {
         return name;
     }
 
-    public List<String> getPets() {
-        List<String> list = new ArrayList<String>();
-        for (Pet pet: pets) {
-            list.add(pet.toString());
-        }
-        return list;
+    public ArrayList<Pet> getPets() {
+        return pets;
     }
 
     public int getNumberOfPets(){
         return pets.size();
+    }
+
+    public void editClient(Client client){
+        setName(client.getName());
+        this.pets = client.getPets();
     }
 
     public void setName(String name) {

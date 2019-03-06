@@ -31,7 +31,7 @@ public class ClinicTest {
     public void editClientName() {
         System.out.println("editClientName()");
         try {
-            clinic.editClientName("Billy", "Bill");
+            clinic.editClientName("Billy", new Client("Jack"));
             System.out.println(clinic);
 //            clinic.editClientName("Billy", "Garry");
 //            System.out.println(clinic);
@@ -45,7 +45,7 @@ public class ClinicTest {
     public void editClientPetName() {
         System.out.println("editClientPetName()");
         try {
-            clinic.editClientPetName("Billy", "ham", "doggy");
+            clinic.searchClient("Billy").editPetName( "ham", "doggy");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -56,9 +56,9 @@ public class ClinicTest {
     public void addPets() {
         System.out.println("addPets()");
         try {
-            clinic.addPet("Billy", new Dog("dogg"));
+            clinic.searchClient("Billy").addPets(new Dog("dogg"));
             System.out.println(clinic);
-            clinic.addPet("Billy", new Dog("doggy"));
+            clinic.searchClient("Billy").addPets(new Dog("doggy"));
             System.out.println(clinic);
         } catch (Exception e) {
             System.out.println(e.getMessage());

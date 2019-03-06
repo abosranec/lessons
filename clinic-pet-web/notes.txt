@@ -1,0 +1,1 @@
+- add to upper case for all compare name

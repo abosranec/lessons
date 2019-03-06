@@ -55,24 +55,24 @@ public class Clinic{
         this.clients.clear();
     }
 
-    public void addPet(String clientName, Pet... pets) throws Exception {
-        searchClient(clientName).addPets(pets);
-    }
+//    public void addPet(String clientName, Pet... pets) throws Exception {
+//        searchClient(clientName).addPets(pets);
+//    }
+//
+//    public void removePet(String clientName, String pet) throws Exception{
+//        searchClient(clientName).removePet(pet);
+//    }
 
-    public void removePet(String clientName, String pet) throws Exception{
-        searchClient(clientName).removePet(pet);
-    }
-
-    public void editClientName(String oldName, String newName) throws Exception {
-        if (isClientName(newName)) {
-            throw new Exception("Renaming failed! Client \"" + newName + "\" already exist !");
+    public void editClientName(String oldName, Client newClient) throws Exception {
+        if (clients.contains(newClient) && !oldName.equals(newClient.getName())) {
+            throw new Exception("Renaming failed! Client \"" + newClient.getName() + "\" already exist !");
         }
-        searchClient(oldName).setName(newName);
+        searchClient(oldName).editClient(newClient);
     }
 
-    public void editClientPetName(String client, String oldName, String newName) throws Exception{
-        searchClient(client).editPetName(oldName, newName);
-    }
+//    public void editClientPetName(String client, String oldName, String newName) throws Exception{
+//        searchClient(client).editPetName(oldName, newName);
+//    }
 
     public List<String> seachClientsName(String pet){
         List<String> list = new ArrayList<String>();
@@ -84,9 +84,9 @@ public class Clinic{
         return list;
     }
 
-    public List<String> seachClientPets(String client) throws Exception {
-        return searchClient(client).getPets();
-    }
+//    public List<String> seachClientPets(String client) throws Exception {
+//        return searchClient(client).getPets();
+//    }
 
     public boolean isClientName(String name){
         for (Client client: clients) {
@@ -97,7 +97,7 @@ public class Clinic{
         return false;
     }
 
-    private Client searchClient(String name) throws Exception {
+    public Client searchClient(String name) throws Exception {
         for (Client client: clients) {
             if(name.equals(client.getName())){
                 return client;
@@ -111,8 +111,8 @@ public class Clinic{
         String string = "All clients - " + this.getNumberOfClients() + ", all pets - " + this.getNumberOfPetsAll() + ":\n";
         for (Client client: clients){
             string += "\t" + client.getName() + ": ";
-            for (String list: client.getPets()){
-                string += list + ", ";
+            for (Pet list: client.getPets()){
+                string += list.getName() + ", ";
             }
             string +="\n";
         }
