@@ -29,6 +29,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ClientEditServlet</servlet-name>
+        <servlet-class>petsClinic.servlets.ClientEditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientEditServlet</servlet-name>
+        <url-pattern>/client/edit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ClientDeleteServlet</servlet-name>
         <servlet-class>petsClinic.servlets.ClientDeleteServlet</servlet-class>
     </servlet>
@@ -36,5 +45,5 @@
         <servlet-name>ClientDeleteServlet</servlet-name>
         <url-pattern>/client/delete</url-pattern>
     </servlet-mapping>
-   
+
 </web-app>

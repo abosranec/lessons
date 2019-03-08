@@ -34,7 +34,8 @@ public class Client {
 
     public void editClient(Client client){
         setName(client.getName());
-        this.pets = client.getPets();
+        this.pets.clear();
+        this.pets.addAll(client.getPets());
     }
 
     public void setName(String name) {

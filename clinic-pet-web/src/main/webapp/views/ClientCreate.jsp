@@ -9,8 +9,8 @@
 <body>
     <form action="${pageContext.servletContext.contextPath}/client/create" method="post">
         <span>Name: </span>
-        <input type="text" name="clientName">
-        <input type="submit" value="submit">
+        <input type="text" name="clientName" required>
+        <input type="submit" value="Создать">
     </form>
 </body>
 </html>
