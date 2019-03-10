@@ -27,6 +27,14 @@ public abstract class Pet {
         return type;
     }
 
+    private void setType(String type) {
+        this.type = type;
+    }
+
+    public void editPet(Pet pet){
+        setName(pet.getName());
+        setType(pet.getType());
+    }
     @Override
     public String toString() {
         return name + "(" + type + ")";

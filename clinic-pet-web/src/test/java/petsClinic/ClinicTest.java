@@ -4,6 +4,7 @@ import org.junit.Test;
 import petsClinic.pets.Cat;
 import petsClinic.pets.Dog;
 import petsClinic.pets.Hamster;
+import petsClinic.pets.Pet;
 
 import java.util.Scanner;
 
@@ -45,7 +46,8 @@ public class ClinicTest {
     public void editClientPetName() {
         System.out.println("editClientPetName()");
         try {
-            clinic.searchClient("Billy").editPetName( "ham", "doggy");
+            Pet pet = new Dog("doggy");
+            clinic.searchClient("Billy").editPetName( "ham", pet);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

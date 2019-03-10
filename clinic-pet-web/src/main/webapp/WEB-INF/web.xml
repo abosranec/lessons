@@ -54,4 +54,12 @@
         <servlet-name>PetCreateServlet</servlet-name>
         <url-pattern>/pet/create</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>PetDeleteServlet</servlet-name>
+        <servlet-class>petsClinic.servlets.PetDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PetDeleteServlet</servlet-name>
+        <url-pattern>/pet/delete</url-pattern>
+    </servlet-mapping>
 </web-app>

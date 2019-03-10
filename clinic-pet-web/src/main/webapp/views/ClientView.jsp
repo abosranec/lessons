@@ -11,7 +11,7 @@
     <div class="block0">
         <table class="block1">
             <tr>
-                <td class="block1">id</td>
+                <%--<td class="block1">id</td>--%>
                 <td class="block1">Имя</td>
                 <td class="block1">Изменение</td>
                 <td class="block1">Удаление</td>
@@ -19,7 +19,7 @@
             <c:forEach items="${clients}" var="client" varStatus="status">
                 <div class="block1">
                     <tr>
-                        <td class="block1">id</td>
+                        <%--<td class="block1">id</td>--%>
                         <td class="block1">${client.name}</td>
                         <td class="block1">
                             <a href="${pageContext.servletContext.contextPath}/client/edit?clientName=${client.name}">Изменить</a>
@@ -39,7 +39,9 @@
                             <td class="block1">${pet.name}</td>
                             <td class="block1">${pet.type}</td>
                             <td class="block1">Изменить</td>
-                            <td class="block1">Удалить</td>
+                            <td class="block1">
+                                <a href="${pageContext.servletContext.contextPath}/pet/delete?clientName=${client.name}&petName=${pet.name}">Удалить</a>
+                            </td>
                         </tr>
                     </c:forEach>
                     <tr>

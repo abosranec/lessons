@@ -62,12 +62,12 @@ public class Client {
         this.pets.clear();
     }
 
-    public void editPetName(String oldName, String newName) throws Exception {
-        if (isPetName(newName)) {
-            throw new Exception("Renaming failed! Pet \"" + newName +
+    public void editPetName(String oldName, Pet newPet) throws Exception {
+        if (pets.contains(newPet) && !oldName.equals(newPet.getName())) {
+            throw new Exception("Renaming failed! Pet \"" + newPet +
                     "\" for client \"" + getName() + "\" already exist !");
         }
-        searchPets(oldName).setName(newName);
+        searchPets(oldName).editPet(newPet);
     }
 
     public boolean isPetName(String name){
