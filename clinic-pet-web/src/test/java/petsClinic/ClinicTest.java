@@ -1,14 +1,6 @@
 package petsClinic;
 
 import org.junit.Test;
-import petsClinic.pets.Cat;
-import petsClinic.pets.Dog;
-import petsClinic.pets.Hamster;
-import petsClinic.pets.Pet;
-
-import java.util.Scanner;
-
-import static org.junit.Assert.*;
 
 public class ClinicTest {
 
@@ -18,9 +10,9 @@ public class ClinicTest {
         System.out.println("ClinicTest()");
         try {
             clinic.addClients(
-                    new Client("Jon", new Cat("barsik")),
-                    new Client("Billy", new Dog("doggy"), new Hamster("ham")),
-                    new Client("Jack", new Dog("pyshok"))
+                    new Client("Jon", new Pet("barsik", "Cat")),
+                    new Client("Billy", new Pet("doggy", "Dog"), new Pet("ham", "Hamster")),
+                    new Client("Jack", new Pet("pyshok", "Dog"))
             );
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -46,7 +38,7 @@ public class ClinicTest {
     public void editClientPetName() {
         System.out.println("editClientPetName()");
         try {
-            Pet pet = new Dog("doggy");
+            Pet pet = new Pet("doggy", "Dog");
             clinic.searchClient("Billy").editPetName( "ham", pet);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -58,9 +50,9 @@ public class ClinicTest {
     public void addPets() {
         System.out.println("addPets()");
         try {
-            clinic.searchClient("Billy").addPets(new Dog("dogg"));
+            clinic.searchClient("Billy").addPets(new Pet("dogg", "Dog"));
             System.out.println(clinic);
-            clinic.searchClient("Billy").addPets(new Dog("doggy"));
+            clinic.searchClient("Billy").addPets(new Pet("doggy", "Dog"));
             System.out.println(clinic);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -74,7 +66,7 @@ public class ClinicTest {
         try {
 //            clinic.addClients(new Client("Jon", new Cat("barsik")));
 //            System.out.println(clinic);
-            clinic.addClients(new Client("Garry", new Cat("fluffy")));
+            clinic.addClients(new Client("Garry", new Pet("fluffy", "Cat")));
             System.out.println(clinic);
         } catch (Exception e) {
             System.out.println(e.getMessage());

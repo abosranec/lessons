@@ -10,16 +10,12 @@
     <form action="${pageContext.servletContext.contextPath}/pet/create" method="post">
         <input type="hidden" name="clientName" value="${clientName}">
         <div>
-            <span>Name: </span>
+            <span>Имя: </span>
             <input type="text" name="petName" required>
         </div>
         <div>
-            <label for="idPetType"></label>
-            <select name="petType" id="idPetType" required>
-                <option value="0">Собака</option>
-                <option value="1">Кот</option>
-                <option value="2">Хомяк</option>
-            </select>
+            <span>Тип: </span>
+            <input type="text" name="petType" required>
         </div>
         <input type="submit" value="Создать">
     </form>

@@ -38,7 +38,9 @@
                         <tr>
                             <td class="block1">${pet.name}</td>
                             <td class="block1">${pet.type}</td>
-                            <td class="block1">Изменить</td>
+                            <td class="block1">
+                                <a href="${pageContext.servletContext.contextPath}/pet/edit?clientName=${client.name}&petName=${pet.name}">Изменить</a>
+                            </td>
                             <td class="block1">
                                 <a href="${pageContext.servletContext.contextPath}/pet/delete?clientName=${client.name}&petName=${pet.name}">Удалить</a>
                             </td>

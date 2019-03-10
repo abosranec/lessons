@@ -1,18 +1,14 @@
-package petsClinic.pets;
+package petsClinic;
 
 import java.util.Arrays;
 
-public abstract class Pet {
+public class Pet {
     private String name;
     private String type;
 
     public Pet(String name, String type) {
         this.name = name;
         this.type = type;
-    }
-
-    public Pet(Pet pet, String type) {
-        this(pet.getName(), type);
     }
 
     public String getName() {

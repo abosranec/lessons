@@ -2,6 +2,7 @@ package petsClinic.servlets;
 
 import petsClinic.Client;
 import petsClinic.Clinic;
+import petsClinic.Pet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,8 +26,10 @@ public class ClientEditServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         try {
+            Client client = new Client(req.getParameter("oldClientName"));
+            client.editClient(clinic.searchClient(req.getParameter("oldClientName")));
             //customer data
-            Client client = new Client(req.getParameter("name"));
+            client.setName(req.getParameter("name"));
 
             clinic.editClientName(req.getParameter("oldClientName"), client);
         } catch (Exception e) {

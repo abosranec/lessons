@@ -1,7 +1,5 @@
 package petsClinic;
 
-import petsClinic.pets.*;
-
 import java.util.*;
 
 public class Clinic{

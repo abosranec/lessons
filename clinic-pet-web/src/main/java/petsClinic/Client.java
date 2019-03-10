@@ -1,11 +1,7 @@
 package petsClinic;
 
-import petsClinic.pets.Pet;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Client {
     private String name;
@@ -63,7 +59,7 @@ public class Client {
     }
 
     public void editPetName(String oldName, Pet newPet) throws Exception {
-        if (pets.contains(newPet) && !oldName.equals(newPet.getName())) {
+        if (isPetName(newPet.getName()) && !oldName.equals(newPet.getName())) {
             throw new Exception("Renaming failed! Pet \"" + newPet +
                     "\" for client \"" + getName() + "\" already exist !");
         }
@@ -79,7 +75,7 @@ public class Client {
         return false;
     }
 
-    private Pet searchPets(String name) throws Exception {
+    public Pet searchPets(String name) throws Exception {
         for (Pet pet: pets) {
             if(name.equals(pet.getName())){
                 return pet;

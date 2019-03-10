@@ -1,7 +1,6 @@
 package petsClinic.servlets;
 
-import petsClinic.pets.Dog;
-import petsClinic.pets.Pet;
+import petsClinic.Pet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +39,7 @@ public class ClinicServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.pets.add(new Dog(req.getParameter("name")));
+        this.pets.add(new Pet(req.getParameter("name"), "Dog"));
         doGet(req, resp);
     }
 
