@@ -17,6 +17,10 @@
             <span>Тип: </span>
             <input type="text" name="petType" required>
         </div>
+        <div>
+            <span>Дата рождения: </span>
+            <input type="date" name="petBirthday">
+        </div>
         <input type="submit" value="Создать">
     </form>
 </body>

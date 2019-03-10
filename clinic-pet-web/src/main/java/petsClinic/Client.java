@@ -5,6 +5,11 @@ import java.util.Arrays;
 
 public class Client {
     private String name;
+    private String sex;
+    private String city;
+    private String address;
+    private String phone;
+    private String mail;
     private ArrayList<Pet> pets = new ArrayList<Pet>();
 
     public Client(String name) {
@@ -19,23 +24,56 @@ public class Client {
     public String getName() {
         return name;
     }
-
+    public String getSex() {
+        return sex;
+    }
+    public String getCity() {
+        return city;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public String getPhone() {
+        return phone;
+    }
+    public String getMail() {
+        return mail;
+    }
     public ArrayList<Pet> getPets() {
         return pets;
     }
-
     public int getNumberOfPets(){
         return pets.size();
     }
 
     public void editClient(Client client){
         setName(client.getName());
+        setSex(client.getSex());
+        setCity(client.getCity());
+        setAddress(client.getAddress());
+        setPhone(client.getPhone());
+        setMail(client.getMail());
         this.pets.clear();
         this.pets.addAll(client.getPets());
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+    public void setCity(String city) {
+        this.city = city;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public void addPets(Pet... newPets) throws Exception {

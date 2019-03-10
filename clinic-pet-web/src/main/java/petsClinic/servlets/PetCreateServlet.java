@@ -32,7 +32,7 @@ public class PetCreateServlet extends HttpServlet {
 //                case 2: pet = new Hamster(req.getParameter("petName")); break;
 //                default: ; break;
 //            }
-            Pet pet = new Pet(req.getParameter("petName"), req.getParameter("petType"));
+            Pet pet = new Pet(req.getParameter("petName"), req.getParameter("petType"), req.getParameter("petBirthday"));
             clinic.searchClient(req.getParameter("clientName")).addPets(pet);
         } catch (Exception e) {
             e.getMessage();

@@ -32,7 +32,7 @@ public class PetEditServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         try {
             //pet data
-            Pet pet = new Pet(req.getParameter("name"), req.getParameter("type"));
+            Pet pet = new Pet(req.getParameter("name"), req.getParameter("type"), req.getParameter("birthday"));
 
             clinic.searchClient(req.getParameter("clientName")).editPetName(req.getParameter("oldPetName"), pet);
         } catch (Exception e) {

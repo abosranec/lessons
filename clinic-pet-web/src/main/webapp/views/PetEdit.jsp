@@ -23,6 +23,10 @@
             <input type="text" name="type" value="${pet.type}" required>
         </div>
         <div>
+            <span>Дата рождения: </span>
+            <input type="date" name="birthday" value="${pet.birthday}">
+        </div>
+        <div>
             <input type="submit" value="Изменить">
         </div>
     </form>

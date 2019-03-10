@@ -5,10 +5,16 @@ import java.util.Arrays;
 public class Pet {
     private String name;
     private String type;
+    private String birthday;
 
     public Pet(String name, String type) {
         this.name = name;
         this.type = type;
+    }
+    public Pet(String name, String type, String birthday) {
+        this.name = name;
+        this.type = type;
+        this.birthday = birthday;
     }
 
     public String getName() {
@@ -27,10 +33,21 @@ public class Pet {
         this.type = type;
     }
 
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String date) {
+        this.birthday = date;
+    }
+
+
     public void editPet(Pet pet){
         setName(pet.getName());
         setType(pet.getType());
+        setBirthday(pet.getBirthday());
     }
+
     @Override
     public String toString() {
         return name + "(" + type + ")";

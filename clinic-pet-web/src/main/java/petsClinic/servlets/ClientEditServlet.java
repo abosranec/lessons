@@ -17,7 +17,12 @@ public class ClientEditServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        req.setAttribute("oldClientName", req.getParameter("clientName"));
+//        req.setAttribute("oldClientName", req.getParameter("clientName"));
+        try {
+            req.setAttribute("oldClient", clinic.searchClient(req.getParameter("clientName")));
+        } catch (Exception e) {
+            e.getMessage();
+        }
         req.getRequestDispatcher("/views/ClientEdit.jsp").forward(req, resp);
     }
 
@@ -29,7 +34,12 @@ public class ClientEditServlet extends HttpServlet {
             Client client = new Client(req.getParameter("oldClientName"));
             client.editClient(clinic.searchClient(req.getParameter("oldClientName")));
             //customer data
-            client.setName(req.getParameter("name"));
+            client.setName(req.getParameter("clientName"));
+            client.setSex(req.getParameter("clientSex"));
+            client.setCity(req.getParameter("clientCity"));
+            client.setAddress(req.getParameter("clientAddress"));
+            client.setPhone(req.getParameter("clientPhone"));
+            client.setMail(req.getParameter("clientMail"));
 
             clinic.editClientName(req.getParameter("oldClientName"), client);
         } catch (Exception e) {

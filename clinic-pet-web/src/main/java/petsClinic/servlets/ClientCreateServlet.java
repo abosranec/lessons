@@ -24,7 +24,15 @@ public class ClientCreateServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         try {
-            clinic.addClients(new Client(req.getParameter("clientName")));
+            //customer data
+            Client client = new Client(req.getParameter("clientName"));
+            client.setSex(req.getParameter("clientSex"));
+            client.setCity(req.getParameter("clientCity"));
+            client.setAddress(req.getParameter("clientAddress"));
+            client.setPhone(req.getParameter("clientPhone"));
+            client.setMail(req.getParameter("clientMail"));
+
+            clinic.addClients(client);
         } catch (Exception e) {
             e.printStackTrace();
         }
