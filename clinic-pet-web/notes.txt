@@ -1,2 +1,3 @@
 - add to upper case for all compare name
 - remake create new animals (a lot of classes isn't convenient )
+- default value for <select>

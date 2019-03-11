@@ -19,9 +19,9 @@
         </div>
         <div>
             <label for="sexID">Пол: </label>
-            <select id="sexID" name="clientSex" required>
-                <option value="${oldClient.sex}">Мужской</option>
-                <option value="${oldClient.sex}">Женский</option>
+            <select id="sexID" name="clientSex" onselect="${oldClient.sex}" required>
+                <option value="male">Мужской</option>
+                <option value="female">Женский</option>
             </select>
         </div>
         <div>

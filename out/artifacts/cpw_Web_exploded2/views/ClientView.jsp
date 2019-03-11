@@ -21,6 +21,7 @@
                     <tr>
                         <%--<td class="block1">id</td>--%>
                         <td class="block1">${client.name}</td>
+                        <td class="block1">${client.sex}</td>
                         <td class="block1">
                             <a href="${pageContext.servletContext.contextPath}/client/edit?clientName=${client.name}">Изменить</a>
                         </td>
@@ -32,6 +33,7 @@
                         <td class="block1">Имя</td>
                         <td class="block1">Тип</td>
                         <td class="block1">Дата</td>
+                        <%--<td class="block1">Посещения</td>--%>
                         <td class="block1">Изменение</td>
                         <td class="block1">Удаление</td>
                     </tr>
@@ -40,6 +42,7 @@
                             <td class="block1">${pet.name}</td>
                             <td class="block1">${pet.type}</td>
                             <td class="block1">${pet.birthday}</td>
+                            <%--<td class="block1"></td>--%>
                             <td class="block1">
                                 <a href="${pageContext.servletContext.contextPath}/pet/edit?clientName=${client.name}&petName=${pet.name}">Изменить</a>
                             </td>

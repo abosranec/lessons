@@ -11,7 +11,7 @@
         <form action="${pageContext.servletContext.contextPath}/client/create" method="post">
             <div>
                 <span>Имя: </span>
-                <input type="text" name="clientName" required>
+                <input type="" name="clientName" required>
             </div>
             <div>
                 <label for="sexID">Пол: </label>
