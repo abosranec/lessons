@@ -20,8 +20,17 @@
         <div>
             <label for="sexID">Пол: </label>
             <select id="sexID" name="clientSex" onselect="${oldClient.sex}" required>
-                <option value="male">Мужской</option>
-                <option value="female">Женский</option>
+                <c:set var="male" scope="session" value="male" />
+                <c:set var="female" scope="session" value="female" />
+                <c:set var="selected" scope="session" value="selected" />
+                <option value="male"
+                    <c:if test="${oldClient.getSex().equals(male)}">
+                        <c:out value="${selected}"/>
+                    </c:if>>Мужской</option>
+                <option value="female"
+                    <c:if test="${oldClient.getSex().equals(female)}">
+                        <c:out value="${selected}"/>
+                    </c:if>>Женский</option>
             </select>
         </div>
         <div>
