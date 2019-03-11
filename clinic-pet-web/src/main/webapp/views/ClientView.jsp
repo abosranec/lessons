@@ -7,6 +7,9 @@
     <style><%@include file="/css/styles.css"%></style>
 </head>
 <body>
+    <div class="header">
+        <h1>Клиника домашних питомцев</h1>
+    </div>
     <a href="${pageContext.servletContext.contextPath}/views/ClientCreate.jsp">Добавить клиента</a>
     <div class="block0">
         <table class="block1">

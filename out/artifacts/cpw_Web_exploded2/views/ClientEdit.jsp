@@ -26,13 +26,11 @@
                 <option value="male"
                     <c:if test="${oldClient.getSex().equals(male)}">
                         <c:out value="${selected}"/>
-                    </c:if>
-                    >Мужской</option>
+                    </c:if>>Мужской</option>
                 <option value="female"
                     <c:if test="${oldClient.getSex().equals(female)}">
                         <c:out value="${selected}"/>
-                    </c:if>
-                    >Женский</option>
+                    </c:if>>Женский</option>
             </select>
         </div>
         <div>
