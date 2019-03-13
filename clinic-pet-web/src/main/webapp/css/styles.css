@@ -9,9 +9,40 @@
 	padding: 5px;
 	margin: 0px;
 }
-.header>h1{
-    font-size: 200%;
-    vertical-align: center;
-    border: 1px solid black;
-    background: aquamarine;
+
+
+.header{
+	border: 1px solid black;
+	background: aquamarine;
+	/*height: 100px;*/
+	width: auto;
+	margin: 0px;
+	padding: 0px;
+}
+.header .header-logo{
+	display: inline-block;
+	margin: 0px;
+	padding: 5px;
+	vertical-align: center;
+}
+.header .header-logo img{
+	height: 80px;
+	width: auto;
+	margin: 0px;
+	padding: 0px;
+	box-shadow: 0 0 0 2px darkgray;
+}
+
+.header .header-name{
+	display: inline-block;
+	border: 1px solid black;
+	height: 16px;
+	width: auto;
+	margin: auto;
+	padding: 5px;
+}
+.header .header-name span{
+	font-size: 200%;
+	margin-left: auto;
+	margin-right: auto;
 }

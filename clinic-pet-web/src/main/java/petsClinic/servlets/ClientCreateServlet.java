@@ -36,6 +36,6 @@ public class ClientCreateServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        resp.sendRedirect(String.format("%s%s", req.getContextPath(),"/"));
+        resp.sendRedirect(String.format("%s%s", req.getContextPath(),"/main"));
     }
 }

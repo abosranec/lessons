@@ -8,7 +8,12 @@
 </head>
 <body>
     <div class="header">
-        <h1>Клиника домашних питомцев</h1>
+        <div class="header-logo">
+            <img src="${pageContext.request.contextPath}/images/logo.jpg">
+        </div>
+        <div class="header-name">
+            <%--<span>Клиника домашних питомцев</span>--%>
+        </div>
     </div>
     <a href="${pageContext.servletContext.contextPath}/views/ClientCreate.jsp">Добавить клиента</a>
     <div class="block0">

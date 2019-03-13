@@ -45,6 +45,6 @@ public class ClientEditServlet extends HttpServlet {
         } catch (Exception e) {
             e.getMessage();
         }
-        resp.sendRedirect(String.format("%s%s", req.getContextPath(),"/"));
+        resp.sendRedirect(String.format("%s%s", req.getContextPath(),"/main"));
     }
 }

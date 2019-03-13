@@ -38,6 +38,6 @@ public class PetEditServlet extends HttpServlet {
         } catch (Exception e) {
             e.getMessage();
         }
-        resp.sendRedirect(String.format("%s%s", req.getContextPath(),"/"));
+        resp.sendRedirect(String.format("%s%s", req.getContextPath(),"/main"));
     }
 }

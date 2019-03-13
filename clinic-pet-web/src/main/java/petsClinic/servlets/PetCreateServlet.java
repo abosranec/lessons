@@ -37,6 +37,6 @@ public class PetCreateServlet extends HttpServlet {
         } catch (Exception e) {
             e.getMessage();
         }
-        resp.sendRedirect(String.format("%s%s", req.getContextPath(),"/"));
+        resp.sendRedirect(String.format("%s%s", req.getContextPath(),"/main"));
     }
 }
