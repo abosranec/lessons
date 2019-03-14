@@ -1,7 +1,6 @@
-.block0 {
-	border: 1px solid black;
-	padding: 5px;
-	margin: 0px;
+body{
+    font-family: "Tahoma", sans-serif;
+    font-size: 16px;
 }
 .block1 {
 	border-collapse: collapse;
@@ -9,40 +8,87 @@
 	padding: 5px;
 	margin: 0px;
 }
-
-
 .header{
+    display: block;
 	border: 1px solid black;
-	background: aquamarine;
-	/*height: 100px;*/
+	background: lightskyblue;
+    box-sizing: border-box;
+    height: 100px;
 	width: auto;
 	margin: 0px;
-	padding: 0px;
+	padding: 5px;
 }
 .header .header-logo{
-	display: inline-block;
-	margin: 0px;
-	padding: 5px;
-	vertical-align: center;
-}
-.header .header-logo img{
-	height: 80px;
-	width: auto;
-	margin: 0px;
+	display: block;
+    box-sizing: border-box;
+    float: left;
+    height: 100%;
+    width: auto;
+    margin: 0px 5px 0px 0px;
 	padding: 0px;
-	box-shadow: 0 0 0 2px darkgray;
+    box-shadow: 0 0 0 2px darkgray;
+}
+.header .header-name{
+	display: block;
+    box-sizing: border-box;
+    overflow: auto;
+    font-size: 250%;
+    line-height: 88px;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: middle;
+    text-align: center;
 }
 
-.header .header-name{
-	display: inline-block;
-	border: 1px solid black;
-	height: 16px;
-	width: auto;
-	margin: auto;
-	padding: 5px;
+
+
+
+
+.content {
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    width: 80%;
+    height: 100%;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 0px;
 }
-.header .header-name span{
-	font-size: 200%;
-	margin-left: auto;
-	margin-right: auto;
+.content .user-head{
+    display: block;
+    min-height: 50px;
+    border: 1px solid black;
+    font-size: 150%;
+}
+.content .user-head .name{
+    min-width: 70%;
+    border: 1px solid black;
+}
+
+
+.content .pet-menu{
+    display: block;
+    float: left;
+    width: 20%;
+    border: 1px solid black;
+}
+
+
+.content .pet-head{
+    display: block;
+    border: 1px solid black;
+}
+
+
+
+
+
+.menu {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 20%;
+    height: 100%;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 0px;
 }

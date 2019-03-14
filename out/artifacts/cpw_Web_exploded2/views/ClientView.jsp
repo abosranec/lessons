@@ -8,67 +8,47 @@
 </head>
 <body>
     <div class="header">
-        <div class="header-logo">
-            <img src="${pageContext.request.contextPath}/images/logo.jpg">
-        </div>
-        <div class="header-name">
-            <%--<span>Клиника домашних питомцев</span>--%>
-        </div>
+        <img class="header-logo" src="${pageContext.request.contextPath}/images/logo.jpg">
+        <div class="header-name">Клиника домашних питомцев</div>
     </div>
-    <a href="${pageContext.servletContext.contextPath}/views/ClientCreate.jsp">Добавить клиента</a>
-    <div class="block0">
-        <table class="block1">
-            <tr>
-                <%--<td class="block1">id</td>--%>
-                <td class="block1">Имя</td>
-                <td class="block1">Изменение</td>
-                <td class="block1">Удаление</td>
-            </tr>
-            <c:forEach items="${clients}" var="client" varStatus="status">
-                <div class="block1">
-                    <tr>
-                        <%--<td class="block1">id</td>--%>
-                        <td class="block1">${client.name}</td>
-                        <td class="block1">${client.sex}</td>
-                        <td class="block1">
-                            <a href="${pageContext.servletContext.contextPath}/client/edit?clientName=${client.name}">Изменить</a>
-                        </td>
-                        <td class="block1">
-                            <a href="${pageContext.servletContext.contextPath}/client/delete?clientName=${client.name}">Удалить</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="block1">Имя</td>
-                        <td class="block1">Тип</td>
-                        <td class="block1">Дата</td>
-                        <%--<td class="block1">Посещения</td>--%>
-                        <td class="block1">Изменение</td>
-                        <td class="block1">Удаление</td>
-                    </tr>
+    <div class="content">
+        <c:forEach items="${clients}" var="client" varStatus="status">
+            <div class="user-head">
+                <span class="name">${client.name}</span>
+                <%--<span >${client.sex}</span>--%>
+                <span >
+                    <a href="${pageContext.servletContext.contextPath}/client/edit?clientName=${client.name}">Изменить</a>
+                </span>
+                <span >
+                    <a href="${pageContext.servletContext.contextPath}/client/delete?clientName=${client.name}">Удалить</a>
+                </span>
+            </div>
+            <div class="pet-menu">
+                <a href="${pageContext.servletContext.contextPath}/pet/create?clientName=${client.name}">Добавить питомца</a>
+            </div>
+            <div class="pet-head">
+                <table class="block1">
                     <c:forEach items="${client.pets}" var="pet">
                         <tr>
-                            <td class="block1">${pet.name}</td>
-                            <td class="block1">${pet.type}</td>
-                            <td class="block1">${pet.birthday}</td>
-                            <%--<td class="block1"></td>--%>
-                            <td class="block1">
+                            <td >${pet.name}</td>
+                            <td >${pet.type}</td>
+                            <td >${pet.birthday}</td>
+                                <%--<td class="block1"></td>--%>
+                            <td >
                                 <a href="${pageContext.servletContext.contextPath}/pet/edit?clientName=${client.name}&petName=${pet.name}">Изменить</a>
                             </td>
-                            <td class="block1">
+                            <td >
                                 <a href="${pageContext.servletContext.contextPath}/pet/delete?clientName=${client.name}&petName=${pet.name}">Удалить</a>
                             </td>
                         </tr>
                     </c:forEach>
-                    <tr>
-                        <td class="block1">
-                            <a href="${pageContext.servletContext.contextPath}/pet/create?clientName=${client.name}">Добавить питомца</a>
-                        </td>
-                    </tr>
-                </div>
-            </c:forEach>
-        </table>
+                </table>
+            </div>
+        </c:forEach>
     </div>
-
+    <div class="menu">
+        <a href="${pageContext.servletContext.contextPath}/views/ClientCreate.jsp">Добавить клиента</a>
+    </div>
 
 </body>
 </html>
