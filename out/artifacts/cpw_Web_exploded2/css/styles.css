@@ -55,15 +55,55 @@ body{
     margin: 0px;
 }
 .content .user-head{
-    display: block;
-    min-height: 50px;
+    display: flex;
     border: 1px solid black;
     font-size: 150%;
+    background:#eee;
 }
-.content .user-head .name{
-    min-width: 70%;
+.content .user-head>.user-head-name{
+    flex-grow: 1; /* занимать всё пространство*/
+    padding: 0px 10px;
+    margin: 5px 5px;
+    background: inherit;
+}
+.content .user-head>.user-head-edit{
+    display: flex;
+    flex-shrink: 0; /* не даём блоку сужаться */
+    width: 78px;
+    padding: 0px;
+    margin: 5px 5px 5px 0px;
+    background: inherit;
+}
+
+.user-head-edit>a{
+    display: inline-block;
+    margin: auto;
+    vertical-align: middle;
+}
+.user-head-edit>a:first-child{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.user-head-edit>a:last-child{
+    margin-right: 10px;
+}
+.user-head-edit>a>img{
+    max-width: 18px;
+    max-height: 18px;
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
     border: 1px solid black;
+    border-radius: 5px;
 }
+
+
+
+
+
+
 
 
 .content .pet-menu{

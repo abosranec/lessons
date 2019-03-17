@@ -14,20 +14,27 @@
     <div class="content">
         <c:forEach items="${clients}" var="client" varStatus="status">
             <div class="user-head">
-                <span class="name">${client.name}</span>
-                <%--<span >${client.sex}</span>--%>
-                <span >
-                    <a href="${pageContext.servletContext.contextPath}/client/edit?clientName=${client.name}">Изменить</a>
-                </span>
-                <span >
-                    <a href="${pageContext.servletContext.contextPath}/client/delete?clientName=${client.name}">Удалить</a>
-                </span>
+                <div class="user-head-name">${client.name}</div>
+                <div class="user-head-edit">
+                    <a href="${pageContext.servletContext.contextPath}/client/edit?clientName=${client.name}">
+                        <img src="${pageContext.request.contextPath}/images/icon-edit.png">
+                    </a>
+                    <a href="${pageContext.servletContext.contextPath}/client/delete?clientName=${client.name}">
+                        <img src="${pageContext.request.contextPath}/images/icon-delete.png">
+                    </a>
+                </div>
             </div>
             <div class="pet-menu">
                 <a href="${pageContext.servletContext.contextPath}/pet/create?clientName=${client.name}">Добавить питомца</a>
             </div>
             <div class="pet-head">
                 <table class="block1">
+                    <tr>
+                        <td >Имя</td>
+                        <td >Тип</td>
+                        <td >Дата</td>
+                        <td >Настройки</td>
+                    </tr>
                     <c:forEach items="${client.pets}" var="pet">
                         <tr>
                             <td >${pet.name}</td>
