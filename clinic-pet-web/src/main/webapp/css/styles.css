@@ -5,36 +5,27 @@ body{
     background-size: 100%;
 }
 .header{
-    display: block;
+    display: flex;
+    align-items: center;
 	border: 1px solid black;
     opacity: 0.9;
     background: lightskyblue;
-    box-sizing: border-box;
-    height: 100px;
-	width: auto;
-	margin: 0px;
+    height: 65px;
 	padding: 5px;
 }
 .header .header-logo{
-	display: block;
-    box-sizing: border-box;
-    float: left;
+    flex-shrink: 0; /* не даём блоку сужаться */
     height: 100%;
     width: auto;
     margin: 0px 5px 0px 0px;
-	padding: 0px;
-    box-shadow: 0 0 0 2px darkgray;
+    box-shadow: 1px 1px 1px 1px darkgray;
+    border-radius: 5px;
 }
 .header .header-name{
-	display: block;
-    box-sizing: border-box;
-    overflow: auto;
+    flex-grow: 1; /* занимать всё пространство*/
     font-size: 250%;
-    line-height: 88px;
-    margin: 0px;
-    padding: 0px;
-    vertical-align: middle;
     text-align: center;
+    text-shadow: 1px 1px 2px black;
 }
 
 
@@ -168,6 +159,7 @@ body{
     border-radius: 5px;
     background-color: gray;
     color: ghostwhite;
+    text-shadow: 0px 0px 1px ghostwhite;
 }
 .button > img{
     margin-right: 10px;
