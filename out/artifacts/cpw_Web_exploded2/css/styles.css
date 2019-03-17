@@ -4,16 +4,11 @@ body{
     background: url("../images/background_1.jpg") no-repeat fixed;
     background-size: 100%;
 }
-.block1 {
-	border-collapse: collapse;
-	border: 1px solid black;
-	padding: 5px;
-	margin: 0px;
-}
 .header{
     display: block;
 	border: 1px solid black;
-	background: lightskyblue;
+    opacity: 0.9;
+    background: lightskyblue;
     box-sizing: border-box;
     height: 100px;
 	width: auto;
@@ -44,8 +39,6 @@ body{
 
 
 
-
-
 .content {
     display: inline-block;
     box-sizing: border-box;
@@ -53,23 +46,28 @@ body{
     width: 80%;
     height: 100%;
     border: 1px solid black;
-    padding: 20px;
-    margin: 0px;
+}
+.content .user{
+    margin: 20px;
+    border: 2px solid dimgray;
+    border-radius: 8px;
 }
 .content .user-head{
     display: flex;
     align-items: center;
-    border: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     font-size: 150%;
     background: seashell;
     opacity: 0.9;
 }
-.content .user-head>.user-head-name{
+.content .user-head .user-head-name{
     flex-grow: 1; /* занимать всё пространство*/
     padding: 0px 10px;
     margin: 5px 5px;
 }
-.content .user-head>.user-head-edit{
+.content .user-head .user-head-edit{
     display: flex;
     flex-shrink: 0; /* не даём блоку сужаться */
     width: 78px;
@@ -77,30 +75,21 @@ body{
 
 
 
-
-
-
-
-
-
 .content .pets{
     display: flex;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     align-items: stretch;
     background: lightgrey;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 .content .pet-menu{
-    width: 20%;
+    width: 25%;
     box-sizing: border-box;
     flex-shrink: 0; /* не даём блоку сужаться */
-    border: 1px solid black;
+    border-right: 1px solid black;
     padding: 10px;
 }
-
-
-
-
-
 
 
 
@@ -108,7 +97,7 @@ body{
     flex-grow: 1; /* занимать всё пространство*/
     display: table;
     box-sizing: border-box;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     padding: 10px;
 }
 .content .pet-content .pet-content-row{
@@ -117,59 +106,23 @@ body{
 }
 .content .pet-content .pet-content-row:first-child{
     font-weight: bold;
+    background-color: gray;
 }
 .content .pet-content .pet-content-row div{
     display: table-cell;
     border: 1px solid black;
     text-align: center;
-    height: 20px;
-}
-.content .pet-content .pet-content-row div:nth-child(1){
-    /*width: 50%;*/
+    vertical-align: middle;
+    /*height: 20px;*/
 }
 .content .pet-content .pet-content-row div:nth-child(n+2){
     width: 15%;
 }
 .content .pet-content .pet-content-row .control-buttons{
-    display: table-cell;
     opacity: 1.0;
+    padding: 2px 0px 0px 0px;
+    width: 78px;
 }
-
-
-
-
-
-.control-buttons{
-    margin: 5px 5px 5px 0px;
-    opacity: 1;
-}
-.control-buttons>a{
-}
-.control-buttons>a:first-child{
-    margin-left: 10px;
-    margin-right: 10px;
-}
-.control-buttons>a:last-child{
-    margin-right: 10px;
-}
-.control-buttons>a>img{
-    max-width: 18px;
-    max-height: 18px;
-    width: 100%;
-    height: 100%;
-    padding: 2px;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
-    border: 1px solid black;
-    border-radius: 5px;
-}
-
-
-
-
-
-
-
-
 
 
 
@@ -181,4 +134,52 @@ body{
     border: 1px solid black;
     padding: 20px;
     margin: 0px;
+}
+
+
+
+
+
+
+.control-buttons{
+    margin: 5px 0px;
+    opacity: 1;
+}
+.control-buttons > a{
+    display: inline-block;
+}
+.control-buttons > a:first-child{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.control-buttons > a:last-child{
+    margin-right: 10px;
+}
+
+
+.button{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid black;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background-color: gray;
+    color: ghostwhite;
+}
+.button > img{
+    margin-right: 10px;
+}
+
+.icon{
+    max-width: 18px;
+    max-height: 18px;
+    width: 100%;
+    height: auto;
+    padding: 2px;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+    border: 1px solid black;
+    border-radius: 5px;
 }
