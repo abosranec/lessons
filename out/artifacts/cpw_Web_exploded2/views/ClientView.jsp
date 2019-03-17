@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>ClientView</title>
-    <style><%@include file="/css/styles.css"%></style>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css">
+    <%--<style><%@include file="/css/styles.css"%></style>--%>
 </head>
 <body>
     <div class="header">

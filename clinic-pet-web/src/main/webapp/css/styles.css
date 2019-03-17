@@ -1,6 +1,8 @@
 body{
     font-family: "Tahoma", sans-serif;
     font-size: 16px;
+    background: url("../images/background_1.jpg") no-repeat fixed;
+    background-size: 100%;
 }
 .block1 {
 	border-collapse: collapse;
