@@ -62,7 +62,7 @@ public class Clinic{
 //    }
 
     public void editClientName(String oldName, Client newClient) throws Exception {
-        if (clients.contains(newClient) && !oldName.equals(newClient.getName())) {
+        if (clients.contains(newClient) && !oldName.equalsIgnoreCase(newClient.getName())) {
             throw new Exception("Renaming failed! Client \"" + newClient.getName() + "\" already exist !");
         }
         searchClient(oldName).editClient(newClient);
@@ -88,7 +88,7 @@ public class Clinic{
 
     public boolean isClientName(String name){
         for (Client client: clients) {
-            if(name.equals(client.getName())){
+            if(name.equalsIgnoreCase(client.getName())){
                 return true;
             }
         }
@@ -97,7 +97,7 @@ public class Clinic{
 
     public Client searchClient(String name) throws Exception {
         for (Client client: clients) {
-            if(name.equals(client.getName())){
+            if(name.equalsIgnoreCase(client.getName())){
                 return client;
             }
         }

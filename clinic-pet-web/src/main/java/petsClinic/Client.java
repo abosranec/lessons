@@ -97,7 +97,7 @@ public class Client {
     }
 
     public void editPetName(String oldName, Pet newPet) throws Exception {
-        if (isPetName(newPet.getName()) && !oldName.equals(newPet.getName())) {
+        if (isPetName(newPet.getName()) && !oldName.equalsIgnoreCase(newPet.getName())) {
             throw new Exception("Renaming failed! Pet \"" + newPet +
                     "\" for client \"" + getName() + "\" already exist !");
         }
@@ -106,7 +106,7 @@ public class Client {
 
     public boolean isPetName(String name){
         for (Pet pet: pets) {
-            if(name.equals(pet.getName())){
+            if(name.equalsIgnoreCase(pet.getName())){
                 return true;
             }
         }
@@ -115,7 +115,7 @@ public class Client {
 
     public Pet searchPets(String name) throws Exception {
         for (Pet pet: pets) {
-            if(name.equals(pet.getName())){
+            if(name.equalsIgnoreCase(pet.getName())){
                 return pet;
             }
         }
@@ -133,7 +133,7 @@ public class Client {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        return (name.equals(((Client)obj).getName()));
+        return (name.equalsIgnoreCase(((Client)obj).getName()));
     }
 
     @Override

@@ -64,7 +64,7 @@ public class Pet {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        return (name.equals(((Pet)obj).getName()) && type.equals(((Pet)obj).getType()));
+        return (name.equalsIgnoreCase(((Pet)obj).getName()) && type.equalsIgnoreCase(((Pet)obj).getType()));
     }
 
     @Override
