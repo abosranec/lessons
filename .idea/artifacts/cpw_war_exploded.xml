@@ -7,6 +7,9 @@
           <element id="module-output" name="cpw" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.4" />
+          <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />
+          <element id="library" level="project" name="Maven: postgresql:postgresql:9.1-901-1.jdbc4" />
           <element id="archive" name="se-1.0-SNAPSHOT.jar">
             <element id="module-output" name="se" />
           </element>
