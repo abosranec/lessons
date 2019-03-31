@@ -32,7 +32,7 @@ public class ClientCreateServlet extends HttpServlet {
             client.setPhone(req.getParameter("clientPhone"));
             client.setMail(req.getParameter("clientMail"));
 
-            clinic.addClients(client);
+            clinic.addClient(client);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -4,16 +4,20 @@ import org.junit.Test;
 
 public class ClinicTest {
 
-    private Clinic clinic = new Clinic();
+    private Clinic clinic = Clinic.getINSTANCE();
 
     public ClinicTest() {
         System.out.println("ClinicTest()");
         try {
-            clinic.addClients(
-                    new Client("Jon", new Pet("barsik", "Cat")),
-                    new Client("Billy", new Pet("doggy", "Dog"), new Pet("ham", "Hamster")),
-                    new Client("Jack", new Pet("pyshok", "Dog"))
-            );
+            clinic.addClient(new Client("Jon"));
+            clinic.searchClient("Jon").addPets(new Pet("barsik", "Cat"));
+
+            clinic.addClient(new Client("Billy"));
+            clinic.searchClient("Billy").addPets(new Pet("doggy", "Dog"));
+            clinic.searchClient("Billy").addPets(new Pet("ham", "Hamster"));
+
+            clinic.addClient(new Client("Jack"));
+            clinic.searchClient("Jack").addPets(new Pet("pyshok", "Dog"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -66,7 +70,8 @@ public class ClinicTest {
         try {
 //            clinic.addClients(new Client("Jon", new Cat("barsik")));
 //            System.out.println(clinic);
-            clinic.addClients(new Client("Garry", new Pet("fluffy", "Cat")));
+            clinic.addClient(new Client("Garry"));
+            clinic.searchClient("Garry").addPets(new Pet("fluffy", "Cat"));
             System.out.println(clinic);
         } catch (Exception e) {
             System.out.println(e.getMessage());

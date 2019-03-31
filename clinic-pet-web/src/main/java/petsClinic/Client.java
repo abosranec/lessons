@@ -1,144 +1,101 @@
 package petsClinic;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
-public class Client {
-    private String name;
-    private String sex;
-    private String city;
-    private String address;
-    private String phone;
-    private String mail;
-    private ArrayList<Pet> pets = new ArrayList<Pet>();
+public class Client implements ClientStorage {
+
+    private ClientStorage clientStorage = new ClientMemory();
 
     public Client(String name) {
-        this.name = name;
+        clientStorage.setName(name);
     }
 
-    public Client(String name, Pet... pets) throws Exception {
-        this(name);
-        addPets(pets);
-    }
-
+    @Override
     public String getName() {
-        return name;
+        return clientStorage.getName();
     }
+    @Override
     public String getSex() {
-        return sex;
+        return clientStorage.getSex();
     }
+    @Override
     public String getCity() {
-        return city;
+        return clientStorage.getCity();
     }
+    @Override
     public String getAddress() {
-        return address;
+        return clientStorage.getAddress();
     }
+    @Override
     public String getPhone() {
-        return phone;
+        return clientStorage.getPhone();
     }
+    @Override
     public String getMail() {
-        return mail;
+        return clientStorage.getMail();
     }
-    public ArrayList<Pet> getPets() {
-        return pets;
-    }
-    public int getNumberOfPets(){
-        return pets.size();
+    @Override
+    public List<Pet> getPets() {
+        return clientStorage.getPets();
     }
 
-    public void editClient(Client client){
-        setName(client.getName());
-        setSex(client.getSex());
-        setCity(client.getCity());
-        setAddress(client.getAddress());
-        setPhone(client.getPhone());
-        setMail(client.getMail());
-        this.pets.clear();
-        this.pets.addAll(client.getPets());
-    }
-
+    @Override
     public void setName(String name) {
-        this.name = name;
+        clientStorage.setName(name);
     }
+    @Override
     public void setSex(String sex) {
-        this.sex = sex;
+        clientStorage.setSex(sex);
     }
+    @Override
     public void setCity(String city) {
-        this.city = city;
+        clientStorage.setCity(city);
     }
+    @Override
     public void setAddress(String address) {
-        this.address = address;
+        clientStorage.setAddress(address);
     }
+    @Override
     public void setPhone(String phone) {
-        this.phone = phone;
+        clientStorage.setPhone(phone);
     }
+    @Override
     public void setMail(String mail) {
-        this.mail = mail;
+        clientStorage.setMail(mail);
     }
 
-    public void addPets(Pet... newPets) throws Exception {
-        ArrayList<Pet> list = new ArrayList<Pet>(this.pets);
-        for (Pet pet: newPets){
-            if (list.contains(pet)) {
-                throw new Exception("Adding failed! Pet \"" + pet.getName() +
-                        "\" for client \"" + getName() + "\" already exist!");
-            }
-            list.add(pet);
-        }
-        this.pets.addAll(Arrays.asList(newPets));
+    @Override
+    public void editClient(Client client) {
+        clientStorage.editClient(client);
     }
 
+    @Override
+    public void addPets(Pet newPet) throws Exception {
+        clientStorage.addPets(newPet);
+    }
+
+    @Override
     public void removePet(String name) throws Exception {
-        this.pets.remove(searchPets(name));
+        clientStorage.removePet(name);
     }
 
-    public void removePetAll(){
-        this.pets.clear();
-    }
-
+    @Override
     public void editPetName(String oldName, Pet newPet) throws Exception {
-        if (isPetName(newPet.getName()) && !oldName.equalsIgnoreCase(newPet.getName())) {
-            throw new Exception("Renaming failed! Pet \"" + newPet +
-                    "\" for client \"" + getName() + "\" already exist !");
-        }
-        searchPets(oldName).editPet(newPet);
+        clientStorage.editPetName(oldName, newPet);
     }
 
-    public boolean isPetName(String name){
-        for (Pet pet: pets) {
-            if(name.equalsIgnoreCase(pet.getName())){
-                return true;
-            }
-        }
-        return false;
-    }
-
+    @Override
     public Pet searchPets(String name) throws Exception {
-        for (Pet pet: pets) {
-            if(name.equalsIgnoreCase(pet.getName())){
-                return pet;
-            }
-        }
-        throw new Exception("Operation failed, pet name \"" + name + "\" doesn't exist!");
+        return clientStorage.searchPets(name);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        return (name.equalsIgnoreCase(((Client)obj).getName()));
+        return clientStorage.equals(obj);
     }
 
     @Override
     public int hashCode() {
-        int result = 17;
-        return 31 * result + Arrays.hashCode(name.toCharArray());
+        return clientStorage.hashCode();
     }
 }

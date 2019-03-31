@@ -1,5 +1,6 @@
-package petsClinic;
+package petsClinic.temporary;
 
+import petsClinic.Client;
 import petsClinic.service.Settings;
 
 import java.sql.*;
