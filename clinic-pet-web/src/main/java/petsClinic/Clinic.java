@@ -4,11 +4,12 @@ import java.util.*;
 
 public class Clinic implements ClinicStorage{
 
-    private ClinicStorage clinicStorage = new ClinicMemory();
+    private ClinicStorage clinicStorage = new ClinicJDBC();
 
     private static final Clinic INSTANCE = new Clinic();
 
-    private Clinic() {}
+    private Clinic() {
+    }
 
     public static Clinic getINSTANCE() {
         return INSTANCE;
@@ -38,6 +39,11 @@ public class Clinic implements ClinicStorage{
     @Override
     public Client searchClient(String name) throws Exception {
         return clinicStorage.searchClient(name);
+    }
+
+    @Override
+    public void close() {
+        clinicStorage.close();
     }
 
     @Override

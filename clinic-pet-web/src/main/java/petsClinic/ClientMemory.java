@@ -119,7 +119,7 @@ public class ClientMemory implements ClientStorage{
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (Client.class != obj.getClass()) {
             return false;
         }
         return (name.equalsIgnoreCase(((Client)obj).getName()));

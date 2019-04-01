@@ -2,6 +2,8 @@ package petsClinic;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class ClinicTest {
 
     private Clinic clinic = Clinic.getINSTANCE();
@@ -78,4 +80,21 @@ public class ClinicTest {
         }
     }
 
+    @Test
+    public void removeClient() {
+        try {
+            clinic.removeClient("Jon");
+            ArrayList<Client> arrayList = new ArrayList<>(clinic.getClients());
+            Client client = new Client("pasha");
+            arrayList.add(client);
+            System.out.println(arrayList);
+
+            System.out.println(arrayList.remove(client));
+            System.out.println(arrayList);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(clinic);
+    }
 }

@@ -57,7 +57,11 @@ public class ClinicMemory implements ClinicStorage {
         return string;
     }
 
-//    public int getNumberOfClients(){
+    @Override
+    public void close() {
+    }
+
+    //    public int getNumberOfClients(){
 //        return clients.size();
 //    }
 //

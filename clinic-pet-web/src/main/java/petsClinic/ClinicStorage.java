@@ -13,4 +13,6 @@ public interface ClinicStorage {
     void editClientName(String oldName, Client newClient) throws Exception;
 
     Client searchClient(String name) throws Exception;
+
+    void close();
 }
