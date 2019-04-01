@@ -19,22 +19,38 @@ public class ClinicJDBC implements ClinicStorage {
 
     @Override
     public List<Client> getClients() {
+        String sqlQuery = "select * from Clients C left join Pets P on C.clientID = P.clientID";
         ArrayList<Client> list = new ArrayList<Client>();
         try(final Connection connection = DriverManager.getConnection(
                 settings.value("jdbc.url"), settings.value("jdbc.username"), settings.value("jdbc.password"));
             final Statement statement = connection.createStatement();
-            final ResultSet rs = statement.executeQuery("select * from Clients;")
+            final ResultSet rs = statement.executeQuery(sqlQuery)
         ){
             while(rs.next()){
-                Client client = new Client(rs.getString("name"));
+                Client client = new Client(rs.getString("clientName"));
                 client.setSex(rs.getString("sex"));
                 client.setCity(rs.getString("city"));
                 client.setAddress(rs.getString("address"));
                 client.setPhone(rs.getString("phone"));
                 client.setMail(rs.getString("mail"));
-                list.add(client);
+                Pet pet = new Pet(
+                        rs.getString("petName"),
+                        rs.getString("type"),
+                        rs.getString("birthday"));
+                if (list.contains(client)) {
+                    for (Client cl :list) {
+                        if (client.equals(cl)){
+                            cl.addPets(pet);
+                            break;
+                        }
+                    }
+                }
+                else {
+                    client.addPets(pet);
+                    list.add(client);
+                }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
@@ -45,7 +61,7 @@ public class ClinicJDBC implements ClinicStorage {
         try (final Connection connection = DriverManager.getConnection(
                 settings.value("jdbc.url"), settings.value("jdbc.username"), settings.value("jdbc.password"));
              final PreparedStatement statement = connection.prepareStatement(
-                     "insert into Clients(name, sex, city, address, phone, mail) values (?,?,?,?,?,?)")) {
+                     "insert into Clients(clientName, sex, city, address, phone, mail) values (?,?,?,?,?,?)")) {
             statement.setString(1, client.getName());
             statement.setString(2, client.getSex());
             statement.setString(3, client.getCity());
