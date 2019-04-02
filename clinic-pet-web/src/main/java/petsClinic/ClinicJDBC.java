@@ -33,21 +33,24 @@ public class ClinicJDBC implements ClinicStorage {
                 client.setAddress(rs.getString("address"));
                 client.setPhone(rs.getString("phone"));
                 client.setMail(rs.getString("mail"));
-                Pet pet = new Pet(
-                        rs.getString("petName"),
-                        rs.getString("type"),
-                        rs.getString("birthday"));
-                if (list.contains(client)) {
-                    for (Client cl :list) {
-                        if (client.equals(cl)){
-                            cl.addPets(pet);
-                            break;
-                        }
-                    }
-                }
-                else {
-                    client.addPets(pet);
+                if (rs.getString("petName") == null){
                     list.add(client);
+                } else {
+                    Pet pet = new Pet(
+                            rs.getString("petName"),
+                            rs.getString("type"),
+                            rs.getString("birthday"));
+                    if (list.contains(client)) {
+                        for (Client cl : list) {
+                            if (client.equals(cl)) {
+                                cl.addPets(pet);
+                                break;
+                            }
+                        }
+                    } else {
+                        client.addPets(pet);
+                        list.add(client);
+                    }
                 }
             }
         } catch (Exception e) {
@@ -62,6 +65,10 @@ public class ClinicJDBC implements ClinicStorage {
                 settings.value("jdbc.url"), settings.value("jdbc.username"), settings.value("jdbc.password"));
              final PreparedStatement statement = connection.prepareStatement(
                      "insert into Clients(clientName, sex, city, address, phone, mail) values (?,?,?,?,?,?)")) {
+            Client cl = searchClient(client.getName());
+            if (cl != null){
+                throw new Exception();
+            }
             statement.setString(1, client.getName());
             statement.setString(2, client.getSex());
             statement.setString(3, client.getCity());
@@ -69,46 +76,92 @@ public class ClinicJDBC implements ClinicStorage {
             statement.setString(5, client.getPhone());
             statement.setString(6, client.getMail());
             statement.executeUpdate();
-            return;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            throw new Exception("Adding failed! Client \"" + client.getName() + "\" already exist!");
         }
-        throw new IllegalStateException("Could not create new user");
     }
 
     @Override
     public void removeClient(String name) throws Exception {
-
+        String sqlQuery = String.format("delete from Pets p where p.clientID = " +
+                "(select clientID from clients where clientName = '%s');\n" +
+                "delete from Clients where clientName = '%s';", name, name);
+        try(final Connection connection = DriverManager.getConnection(
+                settings.value("jdbc.url"), settings.value("jdbc.username"), settings.value("jdbc.password"));
+            final Statement statement = connection.createStatement()) {
+            statement.executeUpdate(sqlQuery);
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Operation failed, client name \"" + name + "\" doesn't exist!");
+        }
     }
 
     @Override
     public void editClientName(String oldName, Client newClient) throws Exception {
-
+        try (final Connection connection = DriverManager.getConnection(
+                settings.value("jdbc.url"), settings.value("jdbc.username"), settings.value("jdbc.password"));
+             final PreparedStatement statement = connection.prepareStatement(
+                     "update Clients set clientName = ?, sex = ?, city = ?, address = ?, phone = ?, mail = ? " +
+                             "where clientName = ?;")) {
+            Client cl = searchClient(newClient.getName());
+            if (cl != null && !oldName.equalsIgnoreCase(newClient.getName())){
+                throw new Exception("Renaming failed! Client \"" + newClient.getName() + "\" already exist !");
+            }
+            statement.setString(1, newClient.getName());
+            statement.setString(2, newClient.getSex());
+            statement.setString(3, newClient.getCity());
+            statement.setString(4, newClient.getAddress());
+            statement.setString(5, newClient.getPhone());
+            statement.setString(6, newClient.getMail());
+            statement.setString(7, oldName);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     public Client searchClient(String name) throws Exception {
-        Client client = new Client(name);
-//        try(final Connection connection = DriverManager.getConnection(
-//                settings.value("jdbc.url"), settings.value("jdbc.username"), settings.value("jdbc.password"));
-//            final PreparedStatement statement = connection.prepareStatement(
-//                    "select * from Clients where name = ?;")){
-//            statement.setString(1, name);
-//            statement.executeUpdate();
-////            statement.executeQuery();
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        String sqlQuery = String.format(
+                "select * from Clients C left join Pets P on C.clientID = P.clientID where upper(C.clientName) = upper('%s');", name);
+        Client client = null;
+        try(final Connection connection = DriverManager.getConnection(
+                settings.value("jdbc.url"), settings.value("jdbc.username"), settings.value("jdbc.password"));
+            final Statement statement = connection.createStatement();
+            final ResultSet rs = statement.executeQuery(sqlQuery)
+        ){
+            while(rs.next()){
+                if (client == null){
+                    client = new Client(rs.getString("clientName"));
+                    client.setSex(rs.getString("sex"));
+                    client.setCity(rs.getString("city"));
+                    client.setAddress(rs.getString("address"));
+                    client.setPhone(rs.getString("phone"));
+                    client.setMail(rs.getString("mail"));
+                }
+                if (rs.getString("petName") == null){
+                    break;
+                } else {
+                    Pet pet = new Pet(
+                            rs.getString("petName"),
+                            rs.getString("type"),
+                            rs.getString("birthday"));
+                    client.addPets(pet);
+                }
+            }
+//            if (client == null){
+//                throw new Exception("Operation failed, client name \"" + name + "\" doesn't exist!");
+//            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Operation failed, client name \"" + name + "\" doesn't exist!");
+        }
         return client;
     }
 
     @Override
     public void close() {
-//        try {
-//            connection.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
     }
 }
