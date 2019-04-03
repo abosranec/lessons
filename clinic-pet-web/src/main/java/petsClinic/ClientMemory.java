@@ -95,7 +95,7 @@ public class ClientMemory implements ClientStorage{
     @Override
     public void editPetName(String oldName, Pet newPet) throws Exception {
         if (pets.contains(newPet) && !oldName.equalsIgnoreCase(newPet.getName())) {
-            throw new Exception("Renaming failed! Pet \"" + newPet +
+            throw new Exception("Renaming failed! Pet \"" + newPet.getName() +
                     "\" for client \"" + getName() + "\" already exist !");
         }
         searchPets(oldName).editPet(newPet);

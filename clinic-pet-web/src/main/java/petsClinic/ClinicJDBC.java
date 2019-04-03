@@ -19,7 +19,7 @@ public class ClinicJDBC implements ClinicStorage {
 
     @Override
     public List<Client> getClients() {
-        String sqlQuery = "select * from Clients C left join Pets P on C.clientID = P.clientID";
+        String sqlQuery = "select * from Clients C";
         ArrayList<Client> list = new ArrayList<Client>();
         try(final Connection connection = DriverManager.getConnection(
                 settings.value("jdbc.url"), settings.value("jdbc.username"), settings.value("jdbc.password"));
@@ -33,25 +33,26 @@ public class ClinicJDBC implements ClinicStorage {
                 client.setAddress(rs.getString("address"));
                 client.setPhone(rs.getString("phone"));
                 client.setMail(rs.getString("mail"));
-                if (rs.getString("petName") == null){
-                    list.add(client);
-                } else {
-                    Pet pet = new Pet(
-                            rs.getString("petName"),
-                            rs.getString("type"),
-                            rs.getString("birthday"));
-                    if (list.contains(client)) {
-                        for (Client cl : list) {
-                            if (client.equals(cl)) {
-                                cl.addPets(pet);
-                                break;
-                            }
-                        }
-                    } else {
-                        client.addPets(pet);
-                        list.add(client);
-                    }
-                }
+                list.add(client);
+//                if (rs.getString("petName") == null){
+//                    list.add(client);
+//                } else {
+//                    Pet pet = new Pet(
+//                            rs.getString("petName"),
+//                            rs.getString("type"),
+//                            rs.getString("birthday"));
+//                    if (list.contains(client)) {
+//                        for (Client cl : list) {
+//                            if (client.equals(cl)) {
+//                                cl.addPets(pet);
+//                                break;
+//                            }
+//                        }
+//                    } else {
+//                        client.addPets(pet);
+//                        list.add(client);
+//                    }
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -141,15 +142,15 @@ public class ClinicJDBC implements ClinicStorage {
                     client.setPhone(rs.getString("phone"));
                     client.setMail(rs.getString("mail"));
                 }
-                if (rs.getString("petName") == null){
-                    break;
-                } else {
-                    Pet pet = new Pet(
-                            rs.getString("petName"),
-                            rs.getString("type"),
-                            rs.getString("birthday"));
-                    client.addPets(pet);
-                }
+//                if (rs.getString("petName") == null){
+//                    break;
+//                } else {
+//                    Pet pet = new Pet(
+//                            rs.getString("petName"),
+//                            rs.getString("type"),
+//                            rs.getString("birthday"));
+//                    client.addPets(pet);
+//                }
             }
 //            if (client == null){
 //                throw new Exception("Operation failed, client name \"" + name + "\" doesn't exist!");

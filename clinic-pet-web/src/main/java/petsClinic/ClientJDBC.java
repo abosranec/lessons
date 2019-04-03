@@ -6,7 +6,6 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 
 public class ClientJDBC implements ClientStorage {
     private final Settings settings = Settings.getInstance();
@@ -16,7 +15,6 @@ public class ClientJDBC implements ClientStorage {
     private String address;
     private String phone;
     private String mail;
-    private ArrayList<Pet> pets = new ArrayList<>();
 
     @Override
     public String getName() {
@@ -76,8 +74,6 @@ public class ClientJDBC implements ClientStorage {
         setAddress(client.getAddress());
         setPhone(client.getPhone());
         setMail(client.getMail());
-        this.pets.clear();
-        this.pets.addAll(client.getPets());
     }
 
     @Override
@@ -85,20 +81,20 @@ public class ClientJDBC implements ClientStorage {
         String sqlQuery = String.format("select * from Pets p where p.clientID = " +
                 "(select clientID from clients where clientName = '%s')", getName());
         ArrayList<Pet> list = new ArrayList<>();
-//        try(final Connection connection = DriverManager.getConnection(
-//                settings.value("jdbc.url"), settings.value("jdbc.username"), settings.value("jdbc.password"));
-//            final Statement statement = connection.createStatement();
-//            final ResultSet rs = statement.executeQuery(sqlQuery)
-//        ){
-//            while(rs.next()){
-//                list.add(new Pet(
-//                        rs.getString("petName"),
-//                        rs.getString("type"),
-//                        rs.getString("birthday")));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try(final Connection connection = DriverManager.getConnection(
+                settings.value("jdbc.url"), settings.value("jdbc.username"), settings.value("jdbc.password"));
+            final Statement statement = connection.createStatement();
+            final ResultSet rs = statement.executeQuery(sqlQuery)
+        ){
+            while(rs.next()){
+                list.add(new Pet(
+                        rs.getString("petName"),
+                        rs.getString("type"),
+                        rs.getString("birthday")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return list;
     }
 
@@ -114,11 +110,14 @@ public class ClientJDBC implements ClientStorage {
 //            }
             statement.setString(1, newPet.getName());
             statement.setString(2, newPet.getType());
-            //String startDate="12-31-2014";
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date date = sdf1.parse(newPet.getBirthday());
-            java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
-            statement.setDate(3, sqlStartDate);
+            if (newPet.getBirthday().equals("")){
+                statement.setDate(3, null);
+            }else {
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date date = sdf1.parse(newPet.getBirthday());
+                java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
+                statement.setDate(3, sqlStartDate);
+            }
             statement.setInt(4, getID());
             statement.executeUpdate();
         } catch (Exception e) {
@@ -131,7 +130,6 @@ public class ClientJDBC implements ClientStorage {
 
     @Override
     public void removePet(String name) throws Exception {
-        this.pets.remove(searchPets(name));
         String sqlQuery = String.format("delete from Pets p where p.petName = '%s' AND \n" +
                 "p.clientID = (select clientID from clients where clientName = '%s');", name, getName());
         try(final Connection connection = DriverManager.getConnection(
@@ -146,21 +144,57 @@ public class ClientJDBC implements ClientStorage {
 
     @Override
     public void editPetName(String oldName, Pet newPet) throws Exception {
-        if (pets.contains(newPet) && !oldName.equalsIgnoreCase(newPet.getName())) {
-            throw new Exception("Renaming failed! Pet \"" + newPet +
-                    "\" for client \"" + getName() + "\" already exist !");
+        try (final Connection connection = DriverManager.getConnection(
+                settings.value("jdbc.url"), settings.value("jdbc.username"), settings.value("jdbc.password"));
+             final PreparedStatement statement = connection.prepareStatement(
+                     "update Pets set petName = ?, type = ?, birthday = ? where petName = ?;")) {
+            Pet pet = searchPets(newPet.getName());
+            if (pet != null && !oldName.equalsIgnoreCase(newPet.getName())){
+                throw new Exception("Renaming failed! Pet \"" + newPet.getName() +
+                        "\" for client \"" + getName() + "\" already exist !");
+            }
+            statement.setString(1, newPet.getName());
+            statement.setString(2, newPet.getType());
+            if (newPet.getBirthday().equals("")){
+                statement.setDate(3, null);
+            }else {
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date date = sdf1.parse(newPet.getBirthday());
+                java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
+                statement.setDate(3, sqlStartDate);
+            }
+            statement.setString(4, oldName);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
         }
-        searchPets(oldName).editPet(newPet);
+
     }
 
     @Override
     public Pet searchPets(String name) throws Exception {
-        for (Pet pet: pets) {
-            if(name.equalsIgnoreCase(pet.getName())){
-                return pet;
+        String sqlQuery = String.format(
+                "select * from Pets where upper(petName) = upper('%s');", name);
+        Pet pet = null;
+        try(final Connection connection = DriverManager.getConnection(
+                settings.value("jdbc.url"), settings.value("jdbc.username"), settings.value("jdbc.password"));
+            final Statement statement = connection.createStatement();
+            final ResultSet rs = statement.executeQuery(sqlQuery)
+        ){
+            if (rs.next()){
+                pet = new Pet(
+                        rs.getString("petName"),
+                        rs.getString("type"),
+                        rs.getString("birthday"));
+            } else {
+                throw new Exception("Operation failed, pet name \"" + name + "\" doesn't exist!");
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
         }
-        throw new Exception("Operation failed, pet name \"" + name + "\" doesn't exist!");
+        return pet;
     }
 
     @Override

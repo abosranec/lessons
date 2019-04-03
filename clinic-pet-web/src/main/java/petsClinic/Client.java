@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Client implements ClientStorage {
 
-    private ClientStorage clientStorage = new ClientMemory();
+    private ClientStorage clientStorage = new ClientJDBC();
 
     public Client(String name) {
         clientStorage.setName(name);
