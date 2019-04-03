@@ -13,7 +13,7 @@ create table Clients (
 );
 create table Pets (
   petID serial primary key,
-  petName varchar(60) unique,
+  petName varchar(60),
   type varchar(60),
   birthday DATE,
   clientID integer,
@@ -42,3 +42,11 @@ select * from Clients C left join Pets P on C.clientID = P.clientID where C.clie
 
 update Clients set clientName = ?, sex = ?, city = ?, address = ?, phone = ?, mail = ?
 where clientName = ?;
+
+select * from Pets p where p.clientID = (select clientID from clients where clientName = '%s')
+
+select * from Clients c where c.clientName = '%s';
+
+
+delete from Pets p where p.petName = '%s' AND
+p.clientID = (select clientID from clients where clientName = '%s');
