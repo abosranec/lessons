@@ -50,3 +50,5 @@ select * from Clients c where c.clientName = '%s';
 
 delete from Pets p where p.petName = '%s' AND
 p.clientID = (select clientID from clients where clientName = '%s');
+
+select * from Pets p where upper(p.petName) = upper('%s') and p.clientID = (select clientID from clients where clientName = '%s');
