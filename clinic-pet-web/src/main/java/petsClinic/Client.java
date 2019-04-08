@@ -3,9 +3,18 @@ package petsClinic;
 import java.util.List;
 
 public class Client implements ClientStorage {
+    private int id;
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     private ClientStorage clientStorage = new ClientJDBC();
 
+    public Client() {
+    }
     public Client(String name) {
         clientStorage.setName(name);
     }

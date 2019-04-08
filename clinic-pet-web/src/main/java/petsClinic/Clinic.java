@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Clinic implements ClinicStorage{
 
-    private ClinicStorage clinicStorage = new ClinicJDBC();
+    private ClinicStorage clinicStorage = new ClinicHibernate();
 
     private static final Clinic INSTANCE = new Clinic();
 
