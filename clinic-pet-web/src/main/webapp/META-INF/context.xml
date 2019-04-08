@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Context path="/" reloadable="true">
+<Context path="/WEB-INF" reloadable="true">
     <Resource name="jdbc/postgres" auth="Container"
               type="javax.sql.DataSource"
-              maxActive="100" maxIdle="30" maxWait="30000"
+              maxTotal="8" maxIdle="30" maxWaitMillis="-1"
               username="postgres" password="7663733"
               driverClassName="org.postgresql.Driver"
               url="jdbc:postgresql://127.0.0.1:5432/petsClinic"/>

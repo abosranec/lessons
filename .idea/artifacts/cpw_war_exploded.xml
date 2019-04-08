@@ -42,6 +42,11 @@
           <element id="archive" name="se-1.0-SNAPSHOT.jar">
             <element id="module-output" name="se" />
           </element>
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:5.4.2.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate.validator:hibernate-validator:6.0.16.Final" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:2.0.1.Final" />
+          <element id="library" level="project" name="Maven: commons-configuration:commons-configuration:1.10" />
         </element>
       </element>
       <element id="directory" name="META-INF">
