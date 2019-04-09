@@ -3,6 +3,9 @@ package petsClinic;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+//import org.hibernate.boot.Metadata;
+//import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
@@ -38,15 +41,36 @@ public class ClinicHibernate implements ClinicStorage {
 //        // builds a session factory from the service registry
 //        SessionFactory factory = configuration.buildSessionFactory(serviceRegistry);
 
+//        StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
+//                .configure("hibernate.cfg.xml").build();
+//        Metadata metaData = new MetadataSources(standardRegistry)
+//                .getMetadataBuilder().build();
+//        factory = metaData.getSessionFactoryBuilder().build();
+//
+
+//        Configuration cfg = new Configuration().addResource("petsClinic/Client.hbm.xml")
+//                .setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
+//                .setProperty("hibernate.connection.driver_class", "org.postgresql.Driver")
+//                .setProperty("hibernate.connection.url", "jdbc:postgresql://127.0.0.1:5432/petsClinic")
+//                .setProperty("hibernate.connection.username", "postgres")
+//                .setProperty("hibernate.connection.password", "7663733").configure();
+//        SessionFactory factory = cfg.buildSessionFactory();
+
+//        Configuration configuration = new Configuration().configure();
+//        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
+//                applySettings(configuration.getProperties());
+//        SessionFactory factory = configuration.buildSessionFactory(builder.build());
+
         try {
             factory = new Configuration().configure().buildSessionFactory();
         }catch (Exception e){
             e.printStackTrace();
         }
+//        Session session = factory.getCurrentSession();
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
         try {
-            list = session.createQuery("from Client ").list();
+            list = (List<Client>)session.createQuery("from petsClinic.Client ").list();
         } catch (Exception e){
             e.printStackTrace();
         }finally {

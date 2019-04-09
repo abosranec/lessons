@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="petsClinic@127.0.0.1" uuid="f8e41e30-868f-44f3-8b3e-2697099856fb">
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="172b48e1-5f58-4528-bc6e-46913b405e3e">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+D:/programming/Java/project/lessons/lessons/clinic-pet-web/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/petsClinic</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="jdbc/postgres" uuid="01eac8b8-f6c6-4ab6-b09f-048d7eecd89d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Tomcat.Resource
+
+D:/programming/Java/project/lessons/lessons/clinic-pet-web/src/main/webapp/META-INF/context.xml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/petsClinic</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="clinic" uuid="5714ab45-5fb7-495b-989c-b7c37c919c3e">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>jdbc.properties
+
+D:/programming/Java/project/lessons/lessons/clinic-pet-web/src/main/resources/clinic.properties</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1:5432/petsClinic</jdbc-url>
     </data-source>

@@ -3,11 +3,11 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
-<hibernate-mapping>
+<hibernate-mapping package="petsClinic">
     <class name="petsClinic.Client" table="Clients">
-        <meta attribute="class-description">
-            This class contains the clients detail.
-        </meta>
+        <!--<meta attribute="class-description">-->
+            <!--This class contains the clients detail.-->
+        <!--</meta>-->
         <id name="id" type="int" column="clientID">
         <generator class="identity"/>
         </id>

@@ -2,6 +2,8 @@ package petsClinic;
 
 import java.util.List;
 
+//@javax.persistence.Entity
+//@javax.persistence.Table(name = "clients")
 public class Client implements ClientStorage {
     private int id;
     public int getId() {
