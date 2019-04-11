@@ -14,7 +14,7 @@
     <url>http://maven.apache.org</url>
 
     <modules>
-        <module>se</module>
+        <!--<module>se</module>-->
         <module>clinic-pet-web</module>
     </modules>
 </project>

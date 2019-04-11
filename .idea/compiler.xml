@@ -7,11 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="cpw" />
-        <module name="se" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="cpw" target="1.7" />
+      <module name="cpw" target="1.8" />
       <module name="lessons" target="1.5" />
       <module name="se" target="1.5" />
     </bytecodeTargetLevel>
