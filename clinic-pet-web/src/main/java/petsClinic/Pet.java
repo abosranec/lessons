@@ -3,9 +3,14 @@ package petsClinic;
 import java.util.Arrays;
 
 public class Pet {
+    private int id;
     private String name;
     private String type;
     private String birthday;
+    private Client client;
+
+    public Pet() {
+    }
 
     public Pet(String name, String type) {
         this.name = name;
@@ -17,30 +22,37 @@ public class Pet {
         this.birthday = birthday;
     }
 
+    public int getId() {
+        return id;
+    }
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getType() {
         return type;
     }
-
-    private void setType(String type) {
-        this.type = type;
-    }
-
     public String getBirthday() {
         return birthday;
     }
+    public Client getClient() {
+        return client;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    private void setType(String type) {
+        this.type = type;
+    }
     public void setBirthday(String date) {
         this.birthday = date;
     }
-
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     public void editPet(Pet pet){
         setName(pet.getName());

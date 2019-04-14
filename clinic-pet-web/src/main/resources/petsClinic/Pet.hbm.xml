@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="petsClinic">
+    <class name="petsClinic.Pet" table="Pets">
+        <meta attribute="class-description">
+            This class contains the pets detail.
+        </meta>
+        <id name="id" type="int" column="petID">
+            <generator class="identity"/>
+        </id>
+        <property name="name" column="petName" type="string"/>
+        <property name="type" column="type" type="string"/>
+        <!--<property name="birthday" column="birthday" type="string"/>-->
+        <many-to-one name="client" column="clientID" class="petsClinic.Client" cascade="all"/>
+    </class>
+</hibernate-mapping>

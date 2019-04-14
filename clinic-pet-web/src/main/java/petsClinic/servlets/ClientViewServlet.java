@@ -17,10 +17,7 @@ public class ClientViewServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        System.out.println("before hibernate");
-//        HttpSession session = req.getSession(true);
         req.setAttribute("clients", clinic.getClients());
-        System.out.println("after hibernate");
         req.getRequestDispatcher("views/ClientView.jsp").forward(req, resp);
     }
 

@@ -1,9 +1,8 @@
 package petsClinic;
 
+import java.util.ArrayList;
 import java.util.List;
 
-//@javax.persistence.Entity
-//@javax.persistence.Table(name = "clients")
 public class Client implements ClientStorage {
     private int id;
     public int getId() {
@@ -12,8 +11,9 @@ public class Client implements ClientStorage {
     public void setId(int id) {
         this.id = id;
     }
+//    private List<Pet> pets = new ArrayList<>();
 
-    private ClientStorage clientStorage = new ClientJDBC();
+    private ClientStorage clientStorage = new ClientHibernate();
 
     public Client() {
     }
@@ -73,6 +73,10 @@ public class Client implements ClientStorage {
     @Override
     public void setMail(String mail) {
         clientStorage.setMail(mail);
+    }
+    @Override
+    public void setPets(List<Pet> pets) {
+        clientStorage.setPets(pets);
     }
 
     @Override

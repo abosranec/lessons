@@ -25,4 +25,15 @@ public class ClinicHibernateTest {
             System.out.println("\n");
         }
     }
+
+    @Test
+    public void searchClient() {
+        Clinic clinic = Clinic.getINSTANCE();
+        try {
+            Client client = clinic.searchClient("паша");
+            System.out.println(client.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -2,11 +2,16 @@ package petsClinic;
 
 import petsClinic.service.Settings;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ClientJDBC implements ClientStorage {
     private final Settings settings = Settings.getInstance();
@@ -66,6 +71,10 @@ public class ClientJDBC implements ClientStorage {
     public void setMail(String mail) {
         this.mail = mail;
     }
+    @Override
+    public void setPets(List<Pet> pets) {
+
+    }
 
     @Override
     public void editClient(Client client){
@@ -78,7 +87,7 @@ public class ClientJDBC implements ClientStorage {
     }
 
     @Override
-    public ArrayList<Pet> getPets() {
+    public List<Pet> getPets() {
         String sqlQuery = String.format("select * from Pets p where p.clientID = " +
                 "(select clientID from clients where clientName = '%s')", getName());
         ArrayList<Pet> list = new ArrayList<>();

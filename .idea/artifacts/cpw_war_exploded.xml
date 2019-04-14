@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="cpw:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/cpw_war_exploded</output-path>
+    <output-path>$PROJECT_DIR$/clinic-pet-web/target/ClinicPetWeb</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -31,6 +31,9 @@
           <element id="library" level="project" name="Maven: org.jvnet.staxex:stax-ex:1.8" />
           <element id="library" level="project" name="Maven: com.sun.xml.fastinfoset:FastInfoset:1.2.15" />
         </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/clinic-pet-web/target/ClinicPetWeb/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="cpw/web/Web" />
     </root>

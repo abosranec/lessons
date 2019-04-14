@@ -5,11 +5,11 @@
 
 <hibernate-mapping package="petsClinic">
     <class name="petsClinic.Client" table="Clients">
-        <!--<meta attribute="class-description">-->
-            <!--This class contains the clients detail.-->
-        <!--</meta>-->
+        <meta attribute="class-description">
+            This class contains the clients detail.
+        </meta>
         <id name="id" type="int" column="clientID">
-        <generator class="identity"/>
+            <generator class="identity"/>
         </id>
         <property name="name" column="clientName" type="string"/>
         <property name="sex" column="sex" type="string"/>
@@ -17,5 +17,20 @@
         <property name="address" column="address" type="string"/>
         <property name="phone" column="phone" type="string"/>
         <property name="mail" column="mail" type="string"/>
+        <!--<set name="pets" table="pets" lazy="false" inverse="true" cascade="all">-->
+            <!--<key column="clientID" not-null="true"/>-->
+            <!--<one-to-many class="petsClinic.Pet"/>-->
+        <!--</set>-->
+        <!--<list name="pets" table="pets" lazy="false" inverse="true" cascade="all">-->
+            <!--<key column="clientID" not-null="true"/>-->
+            <!--<list-index column = "petID"/>-->
+            <!--<one-to-many class="petsClinic.Pet"/>-->
+        <!--</list>-->
+
+        <list name="pets" table="pets" lazy="false" inverse="true" cascade="all">
+            <key column="clientID" not-null="true"/>
+            <list-index column = "petID"/>
+            <one-to-many class="petsClinic.Pet"/>
+        </list>
     </class>
 </hibernate-mapping>

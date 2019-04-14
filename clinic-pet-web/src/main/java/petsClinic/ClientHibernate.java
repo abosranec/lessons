@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ClientMemory implements ClientStorage{
+public class ClientHibernate implements ClientStorage{
     private String name;
     private String sex;
     private String city;
@@ -12,6 +12,13 @@ public class ClientMemory implements ClientStorage{
     private String phone;
     private String mail;
     private List<Pet> pets = new ArrayList<>();
+
+    public ClientHibernate() {
+    }
+
+//    public ClientHibernate(List<Pet> pets) {
+//        this.pets = pets;
+//    }
 
     @Override
     public String getName() {
@@ -135,17 +142,4 @@ public class ClientMemory implements ClientStorage{
         int result = 17;
         return 31 * result + Arrays.hashCode(name.toCharArray());
     }
-
-//    public int getNumberOfPets(){
-//        return pets.size();
-//    }
-//
-//    public boolean isPetName(String name){
-//        for (Pet pet: pets) {
-//            if(name.equalsIgnoreCase(pet.getName())){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 }

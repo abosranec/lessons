@@ -1,6 +1,7 @@
 package petsClinic;
 
-import java.util.*;
+
+import java.util.List;
 
 public class Clinic implements ClinicStorage{
 
