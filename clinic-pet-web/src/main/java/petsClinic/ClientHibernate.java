@@ -46,7 +46,7 @@ public class ClientHibernate implements ClientStorage{
     }
     @Override
     public List<Pet> getPets() {
-        return pets;
+        return this.pets;
     }
 
     @Override
@@ -86,8 +86,6 @@ public class ClientHibernate implements ClientStorage{
         setAddress(client.getAddress());
         setPhone(client.getPhone());
         setMail(client.getMail());
-        this.pets.clear();
-        this.pets.addAll(client.getPets());
     }
 
     @Override
