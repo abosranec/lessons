@@ -1,19 +1,10 @@
 package petsClinic;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Client implements ClientStorage {
-    private int id;
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-//    private List<Pet> pets = new ArrayList<>();
 
-    private ClientStorage clientStorage = new ClientHibernate();
+    private ClientStorage clientStorage = new ClientHibernate(this);
 
     public Client() {
     }
@@ -21,6 +12,10 @@ public class Client implements ClientStorage {
         clientStorage.setName(name);
     }
 
+    @Override
+    public int getId() {
+        return clientStorage.getId();
+    }
     @Override
     public String getName() {
         return clientStorage.getName();
@@ -50,6 +45,10 @@ public class Client implements ClientStorage {
         return clientStorage.getPets();
     }
 
+    @Override
+    public void setId(int id) {
+        clientStorage.setId(id);
+    }
     @Override
     public void setName(String name) {
         clientStorage.setName(name);

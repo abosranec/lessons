@@ -15,6 +15,7 @@ import java.util.List;
 
 public class ClientJDBC implements ClientStorage {
     private final Settings settings = Settings.getInstance();
+    private int id;
     private String name;
     private String sex;
     private String city;
@@ -22,6 +23,10 @@ public class ClientJDBC implements ClientStorage {
     private String phone;
     private String mail;
 
+    @Override
+    public int getId() {
+        return id;
+    }
     @Override
     public String getName() {
         return name;
@@ -47,6 +52,10 @@ public class ClientJDBC implements ClientStorage {
         return mail;
     }
 
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
     @Override
     public void setName(String name) {
         this.name = name;

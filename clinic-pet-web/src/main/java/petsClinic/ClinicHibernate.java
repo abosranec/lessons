@@ -9,10 +9,16 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class ClinicHibernate implements ClinicStorage {
-    private final SessionFactory factory;
+    private static final SessionFactory factory;
+    static {
+        factory = new Configuration().configure().buildSessionFactory();
+    }
 
     public ClinicHibernate() {
-        factory = new Configuration().configure().buildSessionFactory();
+    }
+
+    public static SessionFactory getFactory() {
+        return factory;
     }
 
     @Override

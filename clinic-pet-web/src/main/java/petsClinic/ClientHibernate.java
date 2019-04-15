@@ -1,10 +1,16 @@
 package petsClinic;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ClientHibernate implements ClientStorage{
+    private int id;
     private String name;
     private String sex;
     private String city;
@@ -12,14 +18,17 @@ public class ClientHibernate implements ClientStorage{
     private String phone;
     private String mail;
     private List<Pet> pets = new ArrayList<>();
+    private final SessionFactory factory = ClinicHibernate.getFactory();
+    private Client client;
 
-    public ClientHibernate() {
+    public ClientHibernate(Client client) {
+        this.client = client;
     }
 
-//    public ClientHibernate(List<Pet> pets) {
-//        this.pets = pets;
-//    }
-
+    @Override
+    public int getId() {
+        return id;
+    }
     @Override
     public String getName() {
         return name;
@@ -49,6 +58,10 @@ public class ClientHibernate implements ClientStorage{
         return this.pets;
     }
 
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
     @Override
     public void setName(String name) {
         this.name = name;
@@ -90,35 +103,46 @@ public class ClientHibernate implements ClientStorage{
 
     @Override
     public void addPets(Pet newPet) throws Exception {
-        if (pets.contains(newPet)) {
-            throw new Exception("Adding failed! Pet \"" + newPet.getName() +
-                    "\" for client \"" + getName() + "\" already exist!");
+        final Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            newPet.setClient(this.client);
+            session.save(newPet);
+        } finally {
+            tx.commit();
+            session.close();
         }
-        pets.add(newPet);
     }
 
     @Override
     public void removePet(String name) throws Exception {
-        this.pets.remove(searchPets(name));
+        final Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            session.delete(searchPets(name));
+        } finally {
+            tx.commit();
+            session.close();
+        }
     }
 
     @Override
     public void editPetName(String oldName, Pet newPet) throws Exception {
-        if (pets.contains(newPet) && !oldName.equalsIgnoreCase(newPet.getName())) {
-            throw new Exception("Renaming failed! Pet \"" + newPet.getName() +
-                    "\" for client \"" + getName() + "\" already exist !");
-        }
-        searchPets(oldName).editPet(newPet);
+
     }
 
     @Override
     public Pet searchPets(String name) throws Exception {
-        for (Pet pet: pets) {
-            if(name.equalsIgnoreCase(pet.getName())){
-                return pet;
-            }
+        final Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            final Query query = session.createQuery("from Pet P where P.name=:name");
+            query.setString("name", name);
+            return (Pet) query.iterate().next();
+        } finally {
+            tx.commit();
+            session.close();
         }
-        throw new Exception("Operation failed, pet name \"" + name + "\" doesn't exist!");
     }
 
     @Override

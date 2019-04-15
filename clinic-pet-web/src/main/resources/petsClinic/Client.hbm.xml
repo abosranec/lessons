@@ -17,17 +17,7 @@
         <property name="address" column="address" type="string"/>
         <property name="phone" column="phone" type="string" not-null="true"/>
         <property name="mail" column="mail" type="string" not-null="true"/>
-        <!--<set name="pets" table="pets" lazy="false" inverse="true" cascade="all">-->
-            <!--<key column="clientID" not-null="true"/>-->
-            <!--<one-to-many class="petsClinic.Pet"/>-->
-        <!--</set>-->
-        <!--<list name="pets" table="pets" lazy="false" inverse="true" cascade="all">-->
-            <!--<key column="clientID" not-null="true"/>-->
-            <!--<list-index column = "petID"/>-->
-            <!--<one-to-many class="petsClinic.Pet"/>-->
-        <!--</list>-->
-
-        <list name="pets" table="pets" lazy="false" inverse="true" cascade="all">
+        <list name="pets" table="pets" lazy="true" inverse="true" cascade="all">
             <key column="clientID" not-null="true"/>
             <list-index column = "petID"/>
             <one-to-many class="petsClinic.Pet"/>

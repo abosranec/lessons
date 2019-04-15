@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface ClientStorage {
 
+    int getId();
     String getName();
     String getSex();
     String getCity();
@@ -13,6 +14,7 @@ public interface ClientStorage {
     String getMail();
     List<Pet> getPets();
 
+    void setId(int id);
     void setName(String name);
     void setSex(String sex);
     void setCity(String city);
