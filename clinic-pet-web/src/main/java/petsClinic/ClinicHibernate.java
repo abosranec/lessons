@@ -14,8 +14,7 @@ public class ClinicHibernate implements ClinicStorage {
         factory = new Configuration().configure().buildSessionFactory();
     }
 
-    public ClinicHibernate() {
-    }
+    public ClinicHibernate() {}
 
     public static SessionFactory getFactory() {
         return factory;
@@ -104,6 +103,8 @@ public class ClinicHibernate implements ClinicStorage {
 
     @Override
     public void close() {
-
+        if (factory.isOpen()){
+            factory.close();
+        }
     }
 }

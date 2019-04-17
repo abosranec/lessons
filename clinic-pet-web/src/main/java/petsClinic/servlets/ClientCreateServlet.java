@@ -38,4 +38,10 @@ public class ClientCreateServlet extends HttpServlet {
         }
         resp.sendRedirect(String.format("%s%s", req.getContextPath(),"/main"));
     }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        clinic.close();
+    }
 }

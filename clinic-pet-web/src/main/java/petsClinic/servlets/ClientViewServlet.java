@@ -27,4 +27,10 @@ public class ClientViewServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         super.doPost(req, resp);
     }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        clinic.close();
+    }
 }

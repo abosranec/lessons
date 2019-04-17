@@ -29,4 +29,10 @@ public class PetDeleteServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         super.doPost(req, resp);
     }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        clinic.close();
+    }
 }
