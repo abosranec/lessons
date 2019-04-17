@@ -79,7 +79,7 @@ public class ClinicHibernate implements ClinicStorage {
         final Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
         try {
-            final Query query = session.createQuery("from Client C where C.name=:name");
+            final Query query = session.createQuery("from Client C where upper(C.name)=upper(:name)");
             query.setString("name", name);
             return (Client) query.iterate().next();
         } finally {

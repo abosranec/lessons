@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class ClientJDBC implements ClientStorage {
@@ -81,7 +82,7 @@ public class ClientJDBC implements ClientStorage {
         this.mail = mail;
     }
     @Override
-    public void setPets(List<Pet> pets) {
+    public void setPets(Collection<Pet> pets) {
 
     }
 
@@ -96,7 +97,7 @@ public class ClientJDBC implements ClientStorage {
     }
 
     @Override
-    public List<Pet> getPets() {
+    public Collection<Pet> getPets() {
         String sqlQuery = String.format("select * from Pets p where p.clientID = " +
                 "(select clientID from clients where clientName = '%s')", getName());
         ArrayList<Pet> list = new ArrayList<>();

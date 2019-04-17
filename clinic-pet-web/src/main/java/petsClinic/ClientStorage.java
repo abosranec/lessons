@@ -1,6 +1,6 @@
 package petsClinic;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public interface ClientStorage {
@@ -12,7 +12,7 @@ public interface ClientStorage {
     String getAddress();
     String getPhone();
     String getMail();
-    List<Pet> getPets();
+    Collection<Pet> getPets();
 
     void setId(int id);
     void setName(String name);
@@ -21,7 +21,7 @@ public interface ClientStorage {
     void setAddress(String address);
     void setPhone(String phone);
     void setMail(String mail);
-    void setPets(List<Pet> pets);
+    void setPets(Collection<Pet> pets);
 
     void editClient(Client client);
 

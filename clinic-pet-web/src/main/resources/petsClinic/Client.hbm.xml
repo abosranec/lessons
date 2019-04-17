@@ -11,16 +11,15 @@
         <id name="id" type="int" column="clientID">
             <generator class="identity"/>
         </id>
-        <property name="name" column="clientName" type="string" not-null="true"/>
-        <property name="sex" column="sex" type="string" not-null="true"/>
-        <property name="city" column="city" type="string" not-null="true"/>
+        <property name="name" column="clientName" type="string" not-null="true" unique="true"/>
+        <property name="sex" column="sex" type="string"/>
+        <property name="city" column="city" type="string"/>
         <property name="address" column="address" type="string"/>
-        <property name="phone" column="phone" type="string" not-null="true"/>
-        <property name="mail" column="mail" type="string" not-null="true"/>
-        <list name="pets" table="pets" lazy="true" inverse="true" cascade="all">
+        <property name="phone" column="phone" type="string"/>
+        <property name="mail" column="mail" type="string"/>
+        <set name="pets" table="pets" lazy="false" inverse="true" cascade="all">
             <key column="clientID" not-null="true"/>
-            <list-index column = "petID"/>
             <one-to-many class="petsClinic.Pet"/>
-        </list>
+        </set>
     </class>
 </hibernate-mapping>

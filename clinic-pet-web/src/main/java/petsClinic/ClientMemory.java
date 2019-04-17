@@ -2,6 +2,7 @@ package petsClinic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class ClientMemory implements ClientStorage{
@@ -12,7 +13,7 @@ public class ClientMemory implements ClientStorage{
     private String address;
     private String phone;
     private String mail;
-    private List<Pet> pets = new ArrayList<>();
+    private Collection<Pet> pets = new ArrayList<>();
 
     @Override
     public int getId() {
@@ -43,7 +44,7 @@ public class ClientMemory implements ClientStorage{
         return mail;
     }
     @Override
-    public List<Pet> getPets() {
+    public Collection<Pet> getPets() {
         return pets;
     }
 
@@ -76,7 +77,7 @@ public class ClientMemory implements ClientStorage{
         this.mail = mail;
     }
     @Override
-    public void setPets(List<Pet> pets) {
+    public void setPets(Collection<Pet> pets) {
         this.pets = pets;
     }
 

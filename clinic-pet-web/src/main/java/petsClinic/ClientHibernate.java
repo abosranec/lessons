@@ -5,9 +5,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 
 public class ClientHibernate implements ClientStorage{
     private int id;
@@ -17,7 +17,7 @@ public class ClientHibernate implements ClientStorage{
     private String address;
     private String phone;
     private String mail;
-    private List<Pet> pets = new ArrayList<>();
+    private Collection<Pet> pets = new LinkedHashSet<>();
     private final SessionFactory factory = ClinicHibernate.getFactory();
     private Client client;
 
@@ -54,7 +54,7 @@ public class ClientHibernate implements ClientStorage{
         return mail;
     }
     @Override
-    public List<Pet> getPets() {
+    public Collection<Pet> getPets() {
         return this.pets;
     }
 
@@ -87,7 +87,7 @@ public class ClientHibernate implements ClientStorage{
         this.mail = mail;
     }
     @Override
-    public void setPets(List<Pet> pets) {
+    public void setPets(Collection<Pet> pets) {
         this.pets = pets;
     }
 
@@ -103,14 +103,19 @@ public class ClientHibernate implements ClientStorage{
 
     @Override
     public void addPets(Pet newPet) throws Exception {
-        final Session session = factory.openSession();
-        Transaction tx = session.beginTransaction();
-        try {
-            newPet.setClient(this.client);
-            session.save(newPet);
-        } finally {
-            tx.commit();
-            session.close();
+        if (pets.contains(newPet)) {
+            throw new Exception("Adding failed! Pet \"" + newPet.getName() +
+                    "\" for client \"" + getName() + "\" already exist!");
+        } else {
+            final Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            try {
+                newPet.setClient(this.client);
+                session.save(newPet);
+            } finally {
+                tx.commit();
+                session.close();
+            }
         }
     }
 
@@ -128,21 +133,42 @@ public class ClientHibernate implements ClientStorage{
 
     @Override
     public void editPetName(String oldName, Pet newPet) throws Exception {
-
+        Pet searchPet = searchPets(newPet.getName());
+        if (searchPet != null && !oldName.equalsIgnoreCase(newPet.getName())){
+            throw new Exception("Renaming failed! Pet \"" + newPet.getName() +
+                    "\" for client \"" + getName() + "\" already exist !");
+        } else {
+            final Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            try {
+                Pet pet = session.get(Pet.class, searchPets(oldName).getId());
+                pet.editPet(newPet);
+            } finally {
+                tx.commit();
+                session.close();
+            }
+        }
     }
 
     @Override
     public Pet searchPets(String name) throws Exception {
         final Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
+        Pet pet = null;
         try {
-            final Query query = session.createQuery("from Pet P where P.name=:name");
-            query.setString("name", name);
-            return (Pet) query.iterate().next();
+            final Query query = session.createQuery(
+                    "from Pet as P " +
+                            "where upper(P.name)=upper(:petName) and P.client.name=:clientName");
+            query.setString("petName", name);
+            query.setString("clientName", getName());
+            pet = (Pet) query.iterate().next();
+        } catch (Exception e){
+            e.printStackTrace();
         } finally {
             tx.commit();
             session.close();
         }
+        return pet;
     }
 
     @Override

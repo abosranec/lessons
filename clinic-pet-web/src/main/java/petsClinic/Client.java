@@ -1,6 +1,6 @@
 package petsClinic;
 
-import java.util.List;
+import java.util.Collection;
 
 public class Client implements ClientStorage {
 
@@ -41,7 +41,7 @@ public class Client implements ClientStorage {
         return clientStorage.getMail();
     }
     @Override
-    public List<Pet> getPets() {
+    public Collection<Pet> getPets() {
         return clientStorage.getPets();
     }
 
@@ -74,7 +74,7 @@ public class Client implements ClientStorage {
         clientStorage.setMail(mail);
     }
     @Override
-    public void setPets(List<Pet> pets) {
+    public void setPets(Collection<Pet> pets) {
         clientStorage.setPets(pets);
     }
 

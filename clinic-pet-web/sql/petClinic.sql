@@ -4,7 +4,7 @@ drop table clients;
 -- create table
 create table Clients (
   clientID serial primary key,
-  clientName varchar(60) unique,
+  clientName varchar(60) unique not null ,
   sex varchar(10),
   city varchar(60),
   address varchar(60),
@@ -13,11 +13,10 @@ create table Clients (
 );
 create table Pets (
   petID serial primary key,
-  petName varchar(60),
+  petName varchar(60) not null,
   type varchar(60),
   birthday DATE,
-  clientID integer,
-  constraint clientForeign foreign key(clientID) references Clients(clientID)
+  clientID int not null references Clients(clientID)
 );
 
 -- insert rows

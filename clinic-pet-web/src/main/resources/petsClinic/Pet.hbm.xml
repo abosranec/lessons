@@ -11,9 +11,9 @@
         <id name="id" type="int" column="petID">
             <generator class="identity"/>
         </id>
-        <property name="name" column="petName" type="string"  not-null="true"/>
-        <property name="type" column="type" type="string"  not-null="true"/>
+        <property name="name" column="petName" type="string" not-null="true"/>
+        <property name="type" column="type" type="string"/>
         <!--<property name="birthday" column="birthday" type="string"/>-->
-        <many-to-one name="client" column="clientID" class="petsClinic.Client" cascade="all" not-null="true"/>
+        <many-to-one name="client" column="clientID" class="petsClinic.Client" cascade="save-update"/>
     </class>
 </hibernate-mapping>
