@@ -134,7 +134,7 @@ public class ClientJDBC implements ClientStorage {
             if (newPet.getBirthday().equals("")){
                 statement.setDate(3, null);
             }else {
-                statement.setDate(3, getSQLDate(newPet.getBirthday()));
+                statement.setDate(3, newPet.getBirthday());
             }
             statement.setInt(4, getID());
             statement.executeUpdate();
@@ -175,7 +175,7 @@ public class ClientJDBC implements ClientStorage {
             if (newPet.getBirthday().equals("")){
                 statement.setDate(3, null);
             }else {
-                statement.setDate(3, getSQLDate(newPet.getBirthday()));
+                statement.setDate(3, newPet.getBirthday());
             }
             statement.setString(4, oldName);
             statement.setString(5, getName());

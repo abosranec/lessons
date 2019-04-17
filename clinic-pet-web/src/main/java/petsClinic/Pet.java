@@ -1,12 +1,15 @@
 package petsClinic;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.sql.Date;
 
 public class Pet {
     private int id;
     private String name;
     private String type;
-    private String birthday;
+    private Date birthday;
     private Client client;
 
     public Pet() {
@@ -19,7 +22,11 @@ public class Pet {
     public Pet(String name, String type, String birthday) {
         this.name = name;
         this.type = type;
-        this.birthday = birthday;
+        try {
+            this.birthday = getSQLDate(birthday);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getId() {
@@ -31,7 +38,7 @@ public class Pet {
     public String getType() {
         return type;
     }
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
     public Client getClient() {
@@ -47,7 +54,7 @@ public class Pet {
     private void setType(String type) {
         this.type = type;
     }
-    public void setBirthday(String date) {
+    public void setBirthday(Date date) {
         this.birthday = date;
     }
     public void setClient(Client client) {
@@ -84,5 +91,11 @@ public class Pet {
         int result = 17;
         result = 31 * result + Arrays.hashCode(type.toCharArray());
         return 31 * result + Arrays.hashCode(name.toCharArray());
+    }
+
+    private java.sql.Date getSQLDate(String string) throws ParseException {
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date date = sdf1.parse(string);
+        return new java.sql.Date(date.getTime());
     }
 }
