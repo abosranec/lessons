@@ -39,13 +39,18 @@ public class ClinicHibernate implements ClinicStorage {
 
     @Override
     public void addClient(Client client) throws Exception {
-        final Session session = factory.openSession();
-        Transaction tx = session.beginTransaction();
-        try {
-            session.save(client);
-        } finally {
-            tx.commit();
-            session.close();
+        Client cl = searchClient(client.getName());
+        if (cl != null){
+            throw new Exception("Adding failed! Client \"" + client.getName() + "\" already exist!");
+        } else {
+            final Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            try {
+                session.save(client);
+            } finally {
+                tx.commit();
+                session.close();
+            }
         }
     }
 
@@ -63,14 +68,19 @@ public class ClinicHibernate implements ClinicStorage {
 
     @Override
     public void editClientName(String oldName, Client newClient) throws Exception {
-        final Session session = factory.openSession();
-        Transaction tx = session.beginTransaction();
-        try {
-            Client client = session.get(Client.class, searchClient(oldName).getId());
-            client.editClient(newClient);
-        } finally {
-            tx.commit();
-            session.close();
+        Client searchClient = searchClient(newClient.getName());
+        if (searchClient != null && !oldName.equalsIgnoreCase(newClient.getName())){
+            throw new Exception("Renaming failed! Client \"" + newClient.getName() + "\" already exist !");
+        } else {
+            final Session session = factory.openSession();
+            Transaction tx = session.beginTransaction();
+            try {
+                Client client = session.get(Client.class, searchClient(oldName).getId());
+                client.editClient(newClient);
+            } finally {
+                tx.commit();
+                session.close();
+            }
         }
     }
 
@@ -78,18 +88,22 @@ public class ClinicHibernate implements ClinicStorage {
     public Client searchClient(String name) throws Exception {
         final Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
+        Client client = null;
         try {
             final Query query = session.createQuery("from Client C where upper(C.name)=upper(:name)");
             query.setString("name", name);
-            return (Client) query.iterate().next();
+            client = (Client) query.iterate().next();
+        } catch (Exception e){
+            e.printStackTrace();
         } finally {
             tx.commit();
             session.close();
         }
+        return client;
     }
 
     @Override
     public void close() {
-        this.factory.close();
+
     }
 }

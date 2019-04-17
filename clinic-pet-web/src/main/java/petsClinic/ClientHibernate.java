@@ -157,8 +157,7 @@ public class ClientHibernate implements ClientStorage{
         Pet pet = null;
         try {
             final Query query = session.createQuery(
-                    "from Pet as P " +
-                            "where upper(P.name)=upper(:petName) and P.client.name=:clientName");
+                    "from Pet as P where upper(P.name)=upper(:petName) and P.client.name=:clientName");
             query.setString("petName", name);
             query.setString("clientName", getName());
             pet = (Pet) query.iterate().next();
