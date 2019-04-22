@@ -1,15 +1,20 @@
 package petsClinic;
 
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.List;
 
 public class Clinic implements ClinicStorage{
 
-    private ClinicStorage clinicStorage = new ClinicHibernate();
+    private ClinicStorage clinicStorage;
 
     private static final Clinic INSTANCE = new Clinic();
 
     private Clinic() {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-context.xml");
+        clinicStorage = (ClinicStorage)applicationContext.getBean("clinicHibernate");
     }
 
     public static Clinic getINSTANCE() {

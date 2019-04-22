@@ -7,6 +7,10 @@ public class ClinicMemory implements ClinicStorage {
 
     private ArrayList<Client> clients = new ArrayList<Client>();
 
+    public ClinicMemory() {
+        System.out.println("Clinic memory");
+    }
+
     @Override
     public List<Client> getClients() {
         return clients;

@@ -10,6 +10,7 @@ public class ClinicJDBC implements ClinicStorage {
     private final Settings settings = Settings.getInstance();
 
     public ClinicJDBC() {
+        System.out.println("Clinic jdbc");
         try {
             Class.forName(settings.value("jdbc.driver_class"));
         } catch (ClassNotFoundException e) {

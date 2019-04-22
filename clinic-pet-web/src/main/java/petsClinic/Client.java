@@ -6,8 +6,7 @@ public class Client implements ClientStorage {
 
     private ClientStorage clientStorage = new ClientHibernate(this);
 
-    public Client() {
-    }
+    public Client() {}
     public Client(String name) {
         clientStorage.setName(name);
     }

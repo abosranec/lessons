@@ -14,7 +14,9 @@ public class ClinicHibernate implements ClinicStorage {
         factory = new Configuration().configure().buildSessionFactory();
     }
 
-    public ClinicHibernate() {}
+    public ClinicHibernate() {
+        System.out.println("Clinic hibernate");
+    }
 
     public static SessionFactory getFactory() {
         return factory;
