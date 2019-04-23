@@ -1,11 +1,13 @@
 package petsClinic;
 
+import org.springframework.stereotype.Repository;
 import petsClinic.service.Settings;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ClinicJDBC implements ClinicStorage {
     private final Settings settings = Settings.getInstance();
 

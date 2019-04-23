@@ -1,8 +1,11 @@
 package petsClinic;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ClinicMemory implements ClinicStorage {
 
     private ArrayList<Client> clients = new ArrayList<Client>();

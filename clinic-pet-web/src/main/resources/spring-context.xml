@@ -15,9 +15,24 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+    </bean>
+
+    <bean class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
 
     <bean id="clinicHibernate" class="petsClinic.ClinicHibernate" lazy-init="true"/>
     <bean id="clinicJDBC" class="petsClinic.ClinicJDBC" lazy-init="true"/>
     <bean id="clinicMemory" class="petsClinic.ClinicMemory" lazy-init="true"/>
+    <bean id="clinicSpring" class="petsClinic.ClinicSpring" lazy-init="true"/>
 
+    <context:annotation-config/>
+    <context:component-scan base-package="petsClinic"/>
+    <tx:annotation-driven/>
 </beans>

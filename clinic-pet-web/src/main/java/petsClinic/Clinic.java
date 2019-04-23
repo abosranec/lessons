@@ -14,7 +14,7 @@ public class Clinic implements ClinicStorage{
 
     private Clinic() {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-context.xml");
-        clinicStorage = (ClinicStorage)applicationContext.getBean("clinicHibernate");
+        clinicStorage = (ClinicStorage)applicationContext.getBean("clinicSpring");
     }
 
     public static Clinic getINSTANCE() {

@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ClinicStorage {
 
-    List getClients();
+    List<Client> getClients();
 
     void addClient(Client client) throws Exception;
 
