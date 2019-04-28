@@ -154,20 +154,18 @@ public class ClientHibernate implements ClientStorage{
     public Pet searchPets(String name) throws Exception {
         final Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
-        Pet pet = null;
         try {
             final Query query = session.createQuery(
                     "from Pet as P where upper(P.name)=upper(:petName) and P.client.name=:clientName");
             query.setString("petName", name);
             query.setString("clientName", getName());
-            pet = (Pet) query.iterate().next();
+            return (Pet) query.iterate().next();
         } catch (Exception e){
-            e.printStackTrace();
+            return null;
         } finally {
             tx.commit();
             session.close();
         }
-        return pet;
     }
 
     @Override

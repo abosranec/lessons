@@ -22,11 +22,11 @@ public class Pet {
     public Pet(String name, String type, String birthday) {
         this.name = name;
         this.type = type;
-        try {
-            this.birthday = getSQLDate(birthday);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        this.birthday = getSQLDate(birthday);
+//        try {
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public int getId() {
@@ -93,9 +93,14 @@ public class Pet {
         return 31 * result + Arrays.hashCode(name.toCharArray());
     }
 
-    private java.sql.Date getSQLDate(String string) throws ParseException {
+    private java.sql.Date getSQLDate(String string) {
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date date = sdf1.parse(string);
-        return new java.sql.Date(date.getTime());
+        try {
+            java.util.Date date = sdf1.parse(string);
+            return new java.sql.Date(date.getTime());
+        } catch (ParseException e) {
+            return null;
+        }
+
     }
 }
