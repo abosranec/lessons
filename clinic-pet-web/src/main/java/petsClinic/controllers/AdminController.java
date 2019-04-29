@@ -1,5 +1,7 @@
 package petsClinic.controllers;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,9 @@ public class AdminController {
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String clientView(ModelMap model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //current user
+        String login = auth.getName();
         model.addAttribute("clients", clinic.getClients());
         return "ClientView";
     }

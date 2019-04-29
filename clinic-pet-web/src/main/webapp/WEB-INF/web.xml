@@ -10,17 +10,11 @@
         based on the recommendations of the Application Developer's Guide.
     </description>
 
-
-
-
-
-
-
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath:spring-context.xml
-            <!--classpath:spring-security.xml-->
+            classpath:spring-security.xml
         </param-value>
     </context-param>
 
@@ -37,7 +31,7 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>
                 classpath:spring-context.xml
-                <!--classpath:spring-security.xml-->
+                classpath:spring-security.xml
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
@@ -73,78 +67,15 @@
     </servlet-mapping>
 
 
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
 
-
-
-
-
-    <!---->
-    <!--<welcome-file-list>-->
-        <!--<welcome-file>views/ClientView.jsp</welcome-file>-->
-    <!--</welcome-file-list>-->
-
-    <!--<servlet>-->
-        <!--<servlet-name>ClientViewServlet</servlet-name>-->
-        <!--<servlet-class>petsClinic.servlets.ClientViewServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>ClientViewServlet</servlet-name>-->
-        <!--<url-pattern>/main</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <!--<servlet>-->
-        <!--<servlet-name>ClientCreateServlet</servlet-name>-->
-        <!--<servlet-class>petsClinic.servlets.ClientCreateServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>ClientCreateServlet</servlet-name>-->
-        <!--<url-pattern>/client/create</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <!--<servlet>-->
-        <!--<servlet-name>ClientEditServlet</servlet-name>-->
-        <!--<servlet-class>petsClinic.servlets.ClientEditServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>ClientEditServlet</servlet-name>-->
-        <!--<url-pattern>/client/edit</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <!--<servlet>-->
-        <!--<servlet-name>ClientDeleteServlet</servlet-name>-->
-        <!--<servlet-class>petsClinic.servlets.ClientDeleteServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>ClientDeleteServlet</servlet-name>-->
-        <!--<url-pattern>/client/delete</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <!--<servlet>-->
-        <!--<servlet-name>PetCreateServlet</servlet-name>-->
-        <!--<servlet-class>petsClinic.servlets.PetCreateServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>PetCreateServlet</servlet-name>-->
-        <!--<url-pattern>/pet/create</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <!--<servlet>-->
-        <!--<servlet-name>PetDeleteServlet</servlet-name>-->
-        <!--<servlet-class>petsClinic.servlets.PetDeleteServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>PetDeleteServlet</servlet-name>-->
-        <!--<url-pattern>/pet/delete</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <!--<servlet>-->
-        <!--<servlet-name>PetEditServlet</servlet-name>-->
-        <!--<servlet-class>petsClinic.servlets.PetEditServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>PetEditServlet</servlet-name>-->
-        <!--<url-pattern>/pet/edit</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <resource-ref>
         <description>postgreSQL Datasource example</description>
